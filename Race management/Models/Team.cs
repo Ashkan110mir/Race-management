@@ -6,6 +6,10 @@
 
         public string? TeamName { get; set; }
 
-        public List<RmUserIdentity>? Player { get; set; }
+        public List<RmUserIdentity>? Players { get; set; }
+
+        public RmUserIdentity? Coach { get; set; }
+
+
     }
 }
