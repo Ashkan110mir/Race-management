@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Race_management.Areas.Admin.Data.AdminShowData;
 using Race_management.Data;
 using Race_management.Models;
 using static System.Formats.Asn1.AsnWriter;
@@ -31,6 +32,7 @@ builder.Services.ConfigureApplicationCookie(options =>
         return Task.CompletedTask;
     };
 });
+builder.Services.AddScoped<IAdminShowData, AdminShowData>();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

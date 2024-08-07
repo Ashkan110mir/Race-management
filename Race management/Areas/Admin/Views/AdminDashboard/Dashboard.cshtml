@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Dashboarrd";
+
+}
+
+<h1>داشبورد</h1>
+
+
+
+<div>@ViewBag.UserFullName</div>
+<span>
+    <a asp-action="Logout" asp-controller="AdminAccounting">خروج</a>
+</span>
+
+<br />
+<a asp-action="ManageShow" asp-controller="ShowManagement">مدیریت اجرا ها</a>
