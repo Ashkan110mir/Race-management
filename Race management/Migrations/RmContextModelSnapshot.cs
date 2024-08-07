@@ -3,7 +3,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Race_management.Data;
 
@@ -11,12 +10,10 @@ using Race_management.Data;
 
 namespace Race_management.Migrations
 {
-    [DbContext(typeof(RbContext))]
-    [Migration("20240806111116_createdb")]
-    partial class createdb
+    [DbContext(typeof(RmContext))]
+    partial class RmContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,6 +47,26 @@ namespace Race_management.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "3a75a24b-3e07-4fac-8c06-b59a0a32b545",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "b2c90319-f7a6-479e-96ab-beff294e82f0",
+                            Name = "Coach",
+                            NormalizedName = "COACH"
+                        },
+                        new
+                        {
+                            Id = "3d5693b4-e050-4e1b-8924-12df2aaf662b",
+                            Name = "Player",
+                            NormalizedName = "PLAYER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -137,6 +154,33 @@ namespace Race_management.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "bf4bac23-04ea-4d0c-8ca6-f15473ff4351",
+                            RoleId = "3a75a24b-3e07-4fac-8c06-b59a0a32b545"
+                        },
+                        new
+                        {
+                            UserId = "13b30c74-c408-41cf-bae2-876aad3644e5",
+                            RoleId = "b2c90319-f7a6-479e-96ab-beff294e82f0"
+                        },
+                        new
+                        {
+                            UserId = "83b4db9d-215b-4346-a144-bef69f19030b",
+                            RoleId = "b2c90319-f7a6-479e-96ab-beff294e82f0"
+                        },
+                        new
+                        {
+                            UserId = "0fe23c0f-5f62-4cc0-9133-c6adcab2b771",
+                            RoleId = "3d5693b4-e050-4e1b-8924-12df2aaf662b"
+                        },
+                        new
+                        {
+                            UserId = "98f125a4-8c3c-4bd8-bd28-d56134fe40c2",
+                            RoleId = "3d5693b4-e050-4e1b-8924-12df2aaf662b"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -232,6 +276,103 @@ namespace Race_management.Migrations
                     b.HasIndex("PlayerTeamTeamId");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "bf4bac23-04ea-4d0c-8ca6-f15473ff4351",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "999aa8e9-49b8-46de-959c-374b8d935e85",
+                            Email = "ashkan110mir@gmail.com",
+                            EmailConfirmed = true,
+                            LastName = "Mirdamadi",
+                            LockoutEnabled = false,
+                            Name = "Ashkan",
+                            NormalizedEmail = "ASHKAN110MIR@GMAIL.COM",
+                            NormalizedUserName = "ASHKANMIR",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKHU4CNXLZSUGaXGScV3AtyKJ62V3u8RcdsEq0XifQ5JHwM7MudmytVl6aOae6ftFA==",
+                            PhoneNumber = "09908752252",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "cbf4d775-e5b1-49b1-9f6a-0724722de4ed",
+                            TwoFactorEnabled = false,
+                            UserName = "Ashkanmir"
+                        },
+                        new
+                        {
+                            Id = "13b30c74-c408-41cf-bae2-876aad3644e5",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "26c3b9b6-91b3-4d03-9847-bf3162d3fc1c",
+                            Email = "aliMohammadi@yahoo.com",
+                            EmailConfirmed = true,
+                            LastName = "Mohammadi",
+                            LockoutEnabled = false,
+                            Name = "Ali",
+                            NormalizedEmail = "ALIMOHAMMADI@YAHOO.COM",
+                            NormalizedUserName = "ALIZM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMJV4R3gMveMWcVR4GODxbGlQwQQVikUtSLBTUuHezFJRgEmMl/RDM0fqM8mf0Q2Iw==",
+                            PhoneNumber = "09139875623",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "21209ad3-5458-4c96-8903-732e483cfa03",
+                            TwoFactorEnabled = false,
+                            UserName = "AliZM"
+                        },
+                        new
+                        {
+                            Id = "83b4db9d-215b-4346-a144-bef69f19030b",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "08149fc9-bba9-4218-b1dd-1e09a227ebbc",
+                            Email = "AhmadiReza@outlook.com",
+                            EmailConfirmed = true,
+                            LastName = "Ahmadi",
+                            LockoutEnabled = false,
+                            Name = "Reza",
+                            NormalizedEmail = "AHMADIREZA@OUTLOOK.COM",
+                            NormalizedUserName = "REZAAHMADI",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEwNjlOaYEI1ncER55sHp9DyC3Vx0fmhoMl56ycsyYr57TToefeKwnsx6RQyEZp42g==",
+                            PhoneNumber = "09139958123",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "13d26cf8-4625-456f-b964-d7db3d98190f",
+                            TwoFactorEnabled = false,
+                            UserName = "RezaAhmadi"
+                        },
+                        new
+                        {
+                            Id = "0fe23c0f-5f62-4cc0-9133-c6adcab2b771",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "b11b4da4-309c-401c-8a2e-2ee5915b82d2",
+                            Email = "Akbari@outlook.com",
+                            EmailConfirmed = true,
+                            LastName = "Akbari",
+                            LockoutEnabled = false,
+                            Name = "Fatemeh",
+                            NormalizedEmail = "AKBARI@OUTLOOK.COM",
+                            NormalizedUserName = "FATEMEHAK",
+                            PasswordHash = "AQAAAAIAAYagAAAAECsaNbT1HeL9eeyh8hsyuVP8kMzu66JhBiXofbHRI5MyEcscDKfdouWk8ST3KocQSg==",
+                            PhoneNumber = "09137456723",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "0e522f48-29cb-4e20-9a8e-56b95e07cf2f",
+                            TwoFactorEnabled = false,
+                            UserName = "FatemehAk"
+                        },
+                        new
+                        {
+                            Id = "98f125a4-8c3c-4bd8-bd28-d56134fe40c2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "c7cda33b-6b63-42e1-90fd-9790b17b6038",
+                            Email = "Rahimi@yahoo.com",
+                            EmailConfirmed = true,
+                            LastName = "Rahimi",
+                            LockoutEnabled = false,
+                            Name = "Amir",
+                            NormalizedEmail = "RAHIMI@YAHOO.COM",
+                            NormalizedUserName = "RAHIMIA",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOtT53C+KbSUhyoSJu/i0/z9ey9gQBae23C+2Vck893VbYZngKlYE/u4lvL4Vpvh4A==",
+                            PhoneNumber = "09139874571",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "6f318ea6-d2ca-4e97-81a9-60a3f4cc7ae5",
+                            TwoFactorEnabled = false,
+                            UserName = "RahimiA"
+                        });
                 });
 
             modelBuilder.Entity("Race_management.Models.Show", b =>
@@ -249,19 +390,37 @@ namespace Race_management.Migrations
                     b.Property<DateTime>("ShowDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ShowPlayerId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ShowTitle")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("ShowplayerId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("ShowId");
 
-                    b.HasIndex("ShowPlayerId");
+                    b.HasIndex("ShowplayerId");
 
                     b.ToTable("Shows");
+
+                    b.HasData(
+                        new
+                        {
+                            ShowId = 1,
+                            AverageScore = 0,
+                            ShowDate = new DateTime(2024, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ShowTitle = "اجرا 1",
+                            ShowplayerId = "0fe23c0f-5f62-4cc0-9133-c6adcab2b771"
+                        },
+                        new
+                        {
+                            ShowId = 2,
+                            AverageScore = 0,
+                            ShowDate = new DateTime(2024, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ShowTitle = "اجرا 2",
+                            ShowplayerId = "98f125a4-8c3c-4bd8-bd28-d56134fe40c2"
+                        });
                 });
 
             modelBuilder.Entity("Race_management.Models.ShowToCoach", b =>
@@ -280,7 +439,7 @@ namespace Race_management.Migrations
 
                     b.HasIndex("Coachid");
 
-                    b.ToTable("ShowToCoach");
+                    b.ToTable("ShowToCoache");
                 });
 
             modelBuilder.Entity("Race_management.Models.Team", b =>
@@ -370,7 +529,7 @@ namespace Race_management.Migrations
                 {
                     b.HasOne("Race_management.Models.RmUserIdentity", "ShowPlayer")
                         .WithMany("PlayerShows")
-                        .HasForeignKey("ShowPlayerId");
+                        .HasForeignKey("ShowplayerId");
 
                     b.Navigation("ShowPlayer");
                 });

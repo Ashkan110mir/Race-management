@@ -15,6 +15,7 @@ namespace Race_management.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 
