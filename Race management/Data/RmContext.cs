@@ -177,7 +177,8 @@ namespace Race_management.Data
                     ShowId = 1,
                     ShowDate = DateTime.Parse("2024/07/07"),
                     ShowTitle = "اجرا 1",
-                    ShowplayerId = ids[6]
+                    ShowplayerId = ids[6],
+                    AverageScore=-1
                 });
                 e.HasData(new Show
                 {
@@ -185,6 +186,7 @@ namespace Race_management.Data
                     ShowDate = DateTime.Parse("2024/07/07"),
                     ShowTitle = "اجرا 2",
                     ShowplayerId = ids[7],
+                    AverageScore=-1
                 });
             });
             builder.Entity<IdentityUserRole<string>>(e =>

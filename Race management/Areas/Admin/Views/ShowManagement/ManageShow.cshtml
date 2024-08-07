@@ -4,7 +4,12 @@
 }
 
 <h1>ManageShow</h1>
+<div>
+    <a asp-action="AddShow" asp-controller="ShowManagement">
+        ایجاد اجرا جدید
+    </a>
 
+</div>
 @{
     if (Model.Count == 0 || Model.Count == null)
     {
@@ -12,7 +17,7 @@
     }
     else
     {
-        <table>
+        <table style="text-align:center">
             <tr>
                 <th>
                     کد اجرا
@@ -34,11 +39,22 @@
 
             @foreach (var show in Model)
             {
-                <tr>
+                <tr style="text-align:center">
                     <td>@show.Id</td>
                     <td>@show.title</td>
                     <td>@show.date</td>
-                    <td>@show.Score</td>
+                    <td>
+
+                        @if (show.Score == -1)
+                        {
+                            <div>هنوز نمره ایی ثبت نشده</div>
+                        }
+                        else
+                        {
+                            @show.Score
+                        }
+
+                    </td>
                     <td>
                         <a>@show.PlayerNames.name</a>
                     </td>

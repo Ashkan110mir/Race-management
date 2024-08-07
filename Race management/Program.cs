@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Race_management.Areas.Admin.Data.AdminPlayerData;
 using Race_management.Areas.Admin.Data.AdminShowData;
 using Race_management.Data;
 using Race_management.Models;
@@ -33,6 +34,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     };
 });
 builder.Services.AddScoped<IAdminShowData, AdminShowData>();
+builder.Services.AddScoped<IAdminPlayerData, AdminPlayerData>();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

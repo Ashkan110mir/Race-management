@@ -5,5 +5,6 @@ namespace Race_management.Areas.Admin.Data.AdminShowData
     public interface IAdminShowData
     {
         public List<Show> GetAllShow();
+        public bool AddShow(Show newshow);
     }
 }
