@@ -13,6 +13,24 @@ builder.Services.AddIdentity<RmUserIdentity,IdentityRole>(e=>
 {
     
 }).AddEntityFrameworkStores<RmContext>().AddDefaultTokenProviders();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = new PathString("/Admin/AdminAccouningt/Login");
+    //options.AccessDeniedPath = new PathString("/Account/AccessDenied");
+    options.Events.OnRedirectToLogin = context =>
+    {
+        var requestPath = context.Request.Path;
+        if (requestPath.StartsWithSegments("/Admin"))
+        {
+            context.Response.Redirect("/Admin/AdminAccounting/Login");
+        }
+        else
+        {
+            context.Response.Redirect("");
+        }
+        return Task.CompletedTask;
+    };
+});
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -32,6 +50,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapControllerRoute(
             name: "Admin",
-            pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+            pattern: "{area:exists}/{controller=AdminDashboard}/{action=Dashboarrd}/{id?}"
           );
 app.Run();

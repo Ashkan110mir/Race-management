@@ -59,7 +59,7 @@ namespace Race_management.Data
             //3=for admin
             //4-5=for coach
             //6-7=for player
-            //
+
             var ids = new string[8];
             for(int i=0; i<ids.Length; i++)
             {
