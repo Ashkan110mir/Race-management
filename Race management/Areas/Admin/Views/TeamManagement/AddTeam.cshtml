@@ -1,0 +1,39 @@
+﻿@model AddTeamViewModel
+@{
+    ViewData["Title"] = "AddTeam";
+}
+
+<h1>AddTeam</h1>
+<form method="post" asp-action="AddTeam" asp-controller="TeamManagement">
+    <div asp-validation-summary="ModelOnly"></div>
+    <br />
+
+    <label asp-for="TeamName"></label>
+    <input asp-for="TeamName" />
+    <span asp-validation-for="TeamName"></span>
+    <br />
+
+    <label asp-for="SelectedCoachId"></label>
+    <select asp-for="SelectedCoachId">
+        @foreach(var coach in Model.Coach)
+        {
+            <option value="@coach.Id">@coach.Name &nbsp @coach.LastName</option>
+        }
+    </select>
+    <span asp-validation-for="SelectedCoachId"></span>
+    <br />
+
+    <label asp-for="SelectedPlayerId"></label>
+    <br />
+    <select asp-for="SelectedPlayerId">
+        @foreach(var player in Model.Players)
+        {
+            <option value="@player.Id">@player.Name &nbsp @player.LastName</option>
+        }
+    </select>
+    <span asp-validation-for="SelectedPlayerId"></span>
+    <br />
+
+     <input type="submit" value="افزودن" />
+</form>
+

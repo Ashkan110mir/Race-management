@@ -42,7 +42,7 @@ namespace Race_management.Data
                 //relation
 
                 e.HasMany(e => e.Players).WithOne(e => e.PlayerTeam);
-                e.HasOne(e => e.Coach).WithMany(e => e.CoachTeams);
+                e.HasOne(e => e.Coach).WithMany(e => e.CoachTeams).HasForeignKey(e=>e.CoachId);
             });
             
             builder.Entity<ShowToCoach>(e =>
@@ -59,7 +59,7 @@ namespace Race_management.Data
             //3=for admin
             //4-5=for coach
             //6-7=for player
-            //
+
             var ids = new string[8];
             for(int i=0; i<ids.Length; i++)
             {
@@ -177,7 +177,10 @@ namespace Race_management.Data
                     ShowId = 1,
                     ShowDate = DateTime.Parse("2024/07/07"),
                     ShowTitle = "اجرا 1",
-                    ShowplayerId = ids[6]
+                    ShowplayerId = ids[6],
+                    AverageScore=-1,
+                    Isactive=true,
+                    
                 });
                 e.HasData(new Show
                 {
@@ -185,8 +188,12 @@ namespace Race_management.Data
                     ShowDate = DateTime.Parse("2024/07/07"),
                     ShowTitle = "اجرا 2",
                     ShowplayerId = ids[7],
+                    AverageScore=-1,
+                    Isactive=true,
                 });
             });
+
+
             builder.Entity<IdentityUserRole<string>>(e =>
             {
                 //admin
