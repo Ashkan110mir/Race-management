@@ -1,11 +1,12 @@
 ﻿@model AddShowViewModel
 @{
     ViewData["Title"] = "AddShow";
+    // @ViewBag.isadd
+    // @ViewBag.Id
 }
 
 <h1>AddShow</h1>
-@ViewBag.isadd
-@ViewBag.Id
+
 @* <form asp-action="AddShow" asp-controller="ShowManagement" asp-route-id="@ViewBag.Id"> *@
 <form asp-action=@((ViewBag.isadd==1?"AddShow":"EditShow")) asp-controller="ShowManagement" asp-route-id=@((ViewBag.isadd==1?"":ViewBag.id))>
     <div asp-validation-summary="ModelOnly"></div>

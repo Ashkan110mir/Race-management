@@ -11,5 +11,6 @@ namespace Race_management.Areas.Admin.Data.AdminShowData
         public Show GetShowById(int Showid);
 
         public bool EditShow(Show newshow);
+        public List<Show> GetSHowByplayer(string playerid);
     }
 }

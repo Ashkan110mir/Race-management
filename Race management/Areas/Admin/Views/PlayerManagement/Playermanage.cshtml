@@ -1,0 +1,53 @@
+﻿@model List<PlayerManageViewModel>
+@{
+    ViewData["Title"] = "Playermanage";
+}
+
+<h1>Playermanage</h1>
+
+@{
+    if (Model != null && Model.Count > 0)
+    {
+        <table style="border:5px solid black">
+            <tr>
+                <th>نام شرکت کننده</th>
+                <th>نام خانوادگی شرکت کننده</th>
+                <th>ادرس ایمیل شرکت کننده</th>
+                <th>شماره موبایل شرکت کننده</th>
+                <th>تیم شرکت کننده</th>
+                <th>اجراها</th>
+            </tr>
+            @foreach (var player in Model)
+            {
+                <tr style="border:2px solid black;">
+                    <td>@player.playerName</td>
+                    <td>@player.PlayerLastName</td>
+                    <td>@player.PlayerEmail</td>
+                    <td>@player.PlayerPhone</td>
+                    <td>
+                        @if (player.TeamName != null)
+                        {
+                            @player.TeamName
+                        }
+                        else
+                        {
+                            <div>بازیکن در تیمی وجود ندارد</div>
+                        }
+                    </td>
+                    <td>
+                        @foreach (var show in player.shows)
+                        {
+                            <a>@show.ShowTitle</a>
+                            <br />
+                        }
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+    else
+    {
+        <div>هیچ بازیکنی موجود نیست</div>
+    }
+}

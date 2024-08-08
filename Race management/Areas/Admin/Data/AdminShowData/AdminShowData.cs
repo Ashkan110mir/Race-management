@@ -89,5 +89,10 @@ namespace Race_management.Areas.Admin.Data.AdminShowData
                 return false;
             }
         }
+
+        public List<Show> GetSHowByplayer(string playerid)
+        {
+            return _db.Shows.Where(e=>e.ShowplayerId==playerid).ToList();
+        }
     }
 }

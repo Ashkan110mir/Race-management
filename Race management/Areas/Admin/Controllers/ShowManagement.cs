@@ -39,6 +39,7 @@ namespace Race_management.Areas.Admin.Controllers
             }
             return Players;
         }
+
         public async Task<IActionResult> ManageShow()
         {
             List<ShowManagementViewModel> vm = new List<ShowManagementViewModel>();
@@ -65,6 +66,7 @@ namespace Race_management.Areas.Admin.Controllers
             return View(vm);
         }
 
+
         public async Task<IActionResult> AddShow()
         {
             var users = await _playerdata.GetAllPlayer();
@@ -73,6 +75,7 @@ namespace Race_management.Areas.Admin.Controllers
             vm.Players = await GetPlayer();
             return View(vm);
         }
+
         [HttpPost]
         public async Task<IActionResult> AddShow(AddShowViewModel newshow)
         {
@@ -120,6 +123,7 @@ namespace Race_management.Areas.Admin.Controllers
 
         }
 
+
         public IActionResult DeleteShow(int Showid)
         {
             if (Showid == 0)
@@ -139,6 +143,7 @@ namespace Race_management.Areas.Admin.Controllers
 
         }
 
+
         public async Task<IActionResult> EditShow(int Showid)
         {
             var show = _adminShowData.GetShowById(Showid);
@@ -157,6 +162,7 @@ namespace Race_management.Areas.Admin.Controllers
             vm.Players = await GetPlayer();
             return View("AddShow", vm);
         }
+
         [HttpPost]
         public async Task<IActionResult> EditShow(AddShowViewModel Editshow, int id)
         {
@@ -201,6 +207,7 @@ namespace Race_management.Areas.Admin.Controllers
             }
            
         }
+
 
     }
 }

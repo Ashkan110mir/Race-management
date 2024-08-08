@@ -7,10 +7,14 @@
 
 
 
-<div>@ViewBag.UserFullName</div>
-<span>
-    <a asp-action="Logout" asp-controller="AdminAccounting">خروج</a>
-</span>
+<div>@ViewBag.UserFullName &nbsp <a asp-action="Logout" asp-controller="AdminAccounting">خروج</a></div>
+
+
+
 
 <br />
-<a asp-action="ManageShow" asp-controller="ShowManagement">مدیریت اجرا ها</a>
+<div >
+    <a asp-action="ManageShow" asp-controller="ShowManagement">مدیریت اجرا ها</a>
+    <br />
+    <a asp-action="Playermanage" asp-controller="PlayerManagement">مدیریت بازیکنان</a>
+</div>
