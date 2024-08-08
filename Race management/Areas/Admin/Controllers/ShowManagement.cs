@@ -69,24 +69,39 @@ namespace Race_management.Areas.Admin.Controllers
         {
             var users = await _playerdata.GetAllPlayer();
             AddShowViewModel vm = new AddShowViewModel();
-
+            ViewBag.isadd = 1;
             vm.Players = await GetPlayer();
             return View(vm);
         }
         [HttpPost]
         public async Task<IActionResult> AddShow(AddShowViewModel newshow)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
+                DateTime showdate;
+                DateTime miladidate;
+                try
+                {
+                    showdate = DateTime.Parse(newshow.DateTime);
+                    miladidate = DateCalculator.Tomiladi(showdate);
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "فرمت تاریخ درست نیست");
+                    newshow.Players = await GetPlayer();
+                    return View(newshow);
+                }
+
                 var show = new Show()
                 {
                     ShowTitle = newshow.Title,
-                    ShowDate = (DateTime)newshow.DateTime,
+                    ShowDate = miladidate,
                     ShowplayerId = newshow.SelectedPlayerID,
                     AverageScore = -1,
+                    Isactive = true,
                 };
                 bool addshowstatus = _adminShowData.AddShow(show);
-                if(addshowstatus)
+                if (addshowstatus)
                 {
                     return RedirectToAction(nameof(ManageShow));
                 }
@@ -99,12 +114,93 @@ namespace Race_management.Areas.Admin.Controllers
             }
             else
             {
-                newshow.Players =await GetPlayer();
+                newshow.Players = await GetPlayer();
                 return View(newshow);
             }
-            
+
         }
 
+        public IActionResult DeleteShow(int Showid)
+        {
+            if (Showid == 0)
+            {
+                return NotFound();
+            }
+            bool deletestatus = _adminShowData.RemoveShow(Showid);
+            if (deletestatus)
+            {
+                return RedirectToAction(nameof(ManageShow));
+            }
+            else
+            {
+                ViewBag.massage = "خطایی در حذف رخ داد";
+                return View();
+            }
+
+        }
+
+        public async Task<IActionResult> EditShow(int Showid)
+        {
+            var show = _adminShowData.GetShowById(Showid);
+            if (show == null)
+            {
+                return NotFound();
+            }
+            ViewBag.isadd = 0;
+            ViewBag.Id = show.ShowId;
+            AddShowViewModel vm = new AddShowViewModel()
+            {
+                Title = show.ShowTitle,
+                DateTime = DateCalculator.DateToShamshi(show.ShowDate),
+                SelectedPlayerID = show.ShowplayerId,
+            };
+            vm.Players = await GetPlayer();
+            return View("AddShow", vm);
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditShow(AddShowViewModel Editshow, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                DateTime date;
+                DateTime miladi;
+                try
+                {
+                    date = DateTime.Parse(Editshow.DateTime);
+                    miladi = DateCalculator.Tomiladi(date);
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "فرمت تاریخ درست نیست");
+                    Editshow.Players = await GetPlayer();
+                    return View("AddShow", Editshow);
+                }
+                var newshow = new Show()
+                {
+                    ShowId = id,
+                    ShowDate = miladi,
+                    ShowplayerId = Editshow.SelectedPlayerID,
+                    ShowTitle = Editshow.Title,
+                };
+                bool editstatus = _adminShowData.EditShow(newshow);
+                if (editstatus)
+                {
+                    return RedirectToAction(nameof(ManageShow));
+                }
+                else
+                {
+                    ModelState.AddModelError("", "خطایی در افزودن رخ داد.");
+                    Editshow.Players = await GetPlayer();
+                    return View("AddShow", Editshow);
+                }
+            }
+            else
+            {
+                Editshow.Players = await GetPlayer();
+                return View("AddShow", Editshow);
+            }
+           
+        }
 
     }
 }
