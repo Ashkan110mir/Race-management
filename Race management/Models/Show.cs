@@ -11,7 +11,6 @@
         public int AverageScore { get; set; }
 
         public string? ShowplayerId {  get; set; }
-        public bool Isactive { get; set; }
         public RmUserIdentity? ShowPlayer { get; set;}
 
         public List<ShowToCoach>? ShowToCoach { get; set; }

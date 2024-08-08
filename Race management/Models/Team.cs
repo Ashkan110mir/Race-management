@@ -8,7 +8,6 @@
 
         public List<RmUserIdentity>? Players { get; set; }
 
-        public string? CoachId { get; set; }
         public RmUserIdentity? Coach { get; set; }
 
 
