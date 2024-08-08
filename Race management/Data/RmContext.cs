@@ -42,7 +42,7 @@ namespace Race_management.Data
                 //relation
 
                 e.HasMany(e => e.Players).WithOne(e => e.PlayerTeam);
-                e.HasOne(e => e.Coach).WithMany(e => e.CoachTeams);
+                e.HasOne(e => e.Coach).WithMany(e => e.CoachTeams).HasForeignKey(e=>e.CoachId);
             });
             
             builder.Entity<ShowToCoach>(e =>

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Race_management.Migrations
 {
     /// <inheritdoc />
-    public partial class createdb : Migration
+    public partial class CREATEDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -214,9 +214,9 @@ namespace Race_management.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "34065a31-7772-4893-bb6b-29ceb6ca9f33", null, "Admin", "ADMIN" },
-                    { "3b5f2d43-4c91-4968-9219-aede3acc619a", null, "Player", "PLAYER" },
-                    { "5185b815-b457-4eb1-befd-1ea691188c89", null, "Coach", "COACH" }
+                    { "14d4435e-96ac-4e25-9a4a-97656e9d0c96", null, "Coach", "COACH" },
+                    { "6805597b-6688-4c7f-98d1-46ef376a1500", null, "Player", "PLAYER" },
+                    { "aa366280-f7a2-417f-bfa2-c19c2f054bff", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -224,11 +224,11 @@ namespace Race_management.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LastName", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PlayerTeamTeamId", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "2e283abe-712d-4750-87af-34f25ccdaff5", 0, "1ce3c51c-b289-4525-9a05-e5c965c6934a", "ashkan110mir@gmail.com", true, "Mirdamadi", false, null, "Ashkan", "ASHKAN110MIR@GMAIL.COM", "ASHKANMIR", "AQAAAAIAAYagAAAAEDTyMJC6ECMTQqo3oz5UwuPYAbaXTRa+zcRM6Esy5onjO3P6ofaTt6t5pxm3oqNFVw==", "09908752252", true, null, "a6a25421-1efc-46d2-9aff-d8c3ba3c376b", false, "Ashkanmir" },
-                    { "4da169fc-dd73-4595-8455-f56ac38f88ec", 0, "a611085a-dea1-4c5b-a231-f4ba9eda4ac4", "aliMohammadi@yahoo.com", true, "Mohammadi", false, null, "Ali", "ALIMOHAMMADI@YAHOO.COM", "ALIZM", "AQAAAAIAAYagAAAAEHUnnFh17bPpHc63BLWXLx98MBrCaoXAh321GhVuXLd5m9CfwuWW7PX2R92hoLHHkA==", "09139875623", true, null, "90cfa873-40da-4c51-a1e2-3604450b5ccb", false, "AliZM" },
-                    { "66bc09b3-cbc3-4f72-a572-693be9fb8465", 0, "d8cf0b42-1375-4db2-afc1-000381f92d28", "Akbari@outlook.com", true, "Akbari", false, null, "Fatemeh", "AKBARI@OUTLOOK.COM", "FATEMEHAK", "AQAAAAIAAYagAAAAEF+GvxenKuY7tBfRTUSIyUALYhNeW67cuoSuilg9wIi8is7ctZsN4sUFt0+NHS4rAw==", "09137456723", true, null, "2c93d47d-306e-4fcf-9c70-6814b57670fc", false, "FatemehAk" },
-                    { "72909342-5c2f-4667-b294-45265a2b64a7", 0, "7c872c74-9952-4bab-a320-02bac3de39e7", "Rahimi@yahoo.com", true, "Rahimi", false, null, "Amir", "RAHIMI@YAHOO.COM", "RAHIMIA", "AQAAAAIAAYagAAAAEAzB+Q03KVv8w3l2POyw7zdpmYz2VFB42Hj+lWZVyy8qU2gQHmgxVR1TC4RvKDXC0Q==", "09139874571", true, null, "d936f451-6112-4b4f-b3c2-48084a9efbb7", false, "RahimiA" },
-                    { "b9cb3c98-ca92-4b85-821d-29fe445058cd", 0, "9e884686-65cf-43e7-9711-67f85d1f78f6", "AhmadiReza@outlook.com", true, "Ahmadi", false, null, "Reza", "AHMADIREZA@OUTLOOK.COM", "REZAAHMADI", "AQAAAAIAAYagAAAAENqefe0s9BbLIoSwCJThuXLMaw3hH07D5thEleKrmNuKQVvxabyuQs3kUxXY1+ZQ/A==", "09139958123", true, null, "e62ce10e-4893-4ad3-a0e6-5128c805753c", false, "RezaAhmadi" }
+                    { "2dc3e4e8-5b7e-446e-909e-dbcb6f6e35b7", 0, "79e79c83-9b86-4362-9545-cd6e6d784a3d", "aliMohammadi@yahoo.com", true, "Mohammadi", false, null, "Ali", "ALIMOHAMMADI@YAHOO.COM", "ALIZM", "AQAAAAIAAYagAAAAEBCkcNp0M7HnXB4HjDQxv7vAFK4Iu3WEpltKgWUBHPudcitv0sGpx3wPyyal03MeSg==", "09139875623", true, null, "f6b2fb98-bf7e-41d7-bddd-268e8f44fddf", false, "AliZM" },
+                    { "b9923e70-ef65-48de-a15b-9c62db600c31", 0, "3a4556a4-3dfa-4cdb-960b-d9c7ea412725", "AhmadiReza@outlook.com", true, "Ahmadi", false, null, "Reza", "AHMADIREZA@OUTLOOK.COM", "REZAAHMADI", "AQAAAAIAAYagAAAAEODJ3bdlMuwCkUfoXTw8sAmB+UKdu9m0fjRFYz4IqyhsWG8I2SJOqrirTWI1idsIJg==", "09139958123", true, null, "87fb9dfe-14be-4bd8-970e-d179252a462b", false, "RezaAhmadi" },
+                    { "ea5a2610-86f1-4776-be5f-8bb96d8f74b7", 0, "d15deb8c-0e61-4f3c-a8f5-282d1fe45580", "Rahimi@yahoo.com", true, "Rahimi", false, null, "Amir", "RAHIMI@YAHOO.COM", "RAHIMIA", "AQAAAAIAAYagAAAAEFeQZETXXfexAeLGNMRmlZi87KF0ZgwrX0yRqq9Poj3VgJT2xRkwPvrUyAieU9NAjA==", "09139874571", true, null, "c3f8280e-9674-4046-b606-1ee892d8c7c9", false, "RahimiA" },
+                    { "f6e4a437-5d44-410e-8471-3e35112faa58", 0, "0cc9eb85-f56d-4640-bcbb-08d9e8b1f1ef", "ashkan110mir@gmail.com", true, "Mirdamadi", false, null, "Ashkan", "ASHKAN110MIR@GMAIL.COM", "ASHKANMIR", "AQAAAAIAAYagAAAAEE60dtlpHXeP9rkP8OKur8MD0MXh9FaNEFGdA8Yvkc0CvcMWUagcV8KwgMmkftxsCw==", "09908752252", true, null, "791502dc-04c4-4639-8441-ce039ebba0c3", false, "Ashkanmir" },
+                    { "fef1d6fa-147a-4842-a95d-68efdeafef25", 0, "d6b257e4-46cb-4557-9122-c337fb17ef5b", "Akbari@outlook.com", true, "Akbari", false, null, "Fatemeh", "AKBARI@OUTLOOK.COM", "FATEMEHAK", "AQAAAAIAAYagAAAAEAqRajVBEnyqduKfSoEcqvaxdPyqjJX7sQEMKwBKnxtspx+c2Xok2YQG2/O8/W6+Og==", "09137456723", true, null, "3b60b7d1-5e55-4bc8-9504-213dec653c6f", false, "FatemehAk" }
                 });
 
             migrationBuilder.InsertData(
@@ -236,11 +236,11 @@ namespace Race_management.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "34065a31-7772-4893-bb6b-29ceb6ca9f33", "2e283abe-712d-4750-87af-34f25ccdaff5" },
-                    { "5185b815-b457-4eb1-befd-1ea691188c89", "4da169fc-dd73-4595-8455-f56ac38f88ec" },
-                    { "3b5f2d43-4c91-4968-9219-aede3acc619a", "66bc09b3-cbc3-4f72-a572-693be9fb8465" },
-                    { "3b5f2d43-4c91-4968-9219-aede3acc619a", "72909342-5c2f-4667-b294-45265a2b64a7" },
-                    { "5185b815-b457-4eb1-befd-1ea691188c89", "b9cb3c98-ca92-4b85-821d-29fe445058cd" }
+                    { "14d4435e-96ac-4e25-9a4a-97656e9d0c96", "2dc3e4e8-5b7e-446e-909e-dbcb6f6e35b7" },
+                    { "14d4435e-96ac-4e25-9a4a-97656e9d0c96", "b9923e70-ef65-48de-a15b-9c62db600c31" },
+                    { "6805597b-6688-4c7f-98d1-46ef376a1500", "ea5a2610-86f1-4776-be5f-8bb96d8f74b7" },
+                    { "aa366280-f7a2-417f-bfa2-c19c2f054bff", "f6e4a437-5d44-410e-8471-3e35112faa58" },
+                    { "6805597b-6688-4c7f-98d1-46ef376a1500", "fef1d6fa-147a-4842-a95d-68efdeafef25" }
                 });
 
             migrationBuilder.InsertData(
@@ -248,8 +248,8 @@ namespace Race_management.Migrations
                 columns: new[] { "ShowId", "AverageScore", "Isactive", "ShowDate", "ShowTitle", "ShowplayerId" },
                 values: new object[,]
                 {
-                    { 1, -1, true, new DateTime(2024, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "اجرا 1", "66bc09b3-cbc3-4f72-a572-693be9fb8465" },
-                    { 2, -1, true, new DateTime(2024, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "اجرا 2", "72909342-5c2f-4667-b294-45265a2b64a7" }
+                    { 1, -1, true, new DateTime(2024, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "اجرا 1", "fef1d6fa-147a-4842-a95d-68efdeafef25" },
+                    { 2, -1, true, new DateTime(2024, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "اجرا 2", "ea5a2610-86f1-4776-be5f-8bb96d8f74b7" }
                 });
 
             migrationBuilder.CreateIndex(

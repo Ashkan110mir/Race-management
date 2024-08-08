@@ -51,19 +51,19 @@ namespace Race_management.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "34065a31-7772-4893-bb6b-29ceb6ca9f33",
+                            Id = "aa366280-f7a2-417f-bfa2-c19c2f054bff",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "5185b815-b457-4eb1-befd-1ea691188c89",
+                            Id = "14d4435e-96ac-4e25-9a4a-97656e9d0c96",
                             Name = "Coach",
                             NormalizedName = "COACH"
                         },
                         new
                         {
-                            Id = "3b5f2d43-4c91-4968-9219-aede3acc619a",
+                            Id = "6805597b-6688-4c7f-98d1-46ef376a1500",
                             Name = "Player",
                             NormalizedName = "PLAYER"
                         });
@@ -158,28 +158,28 @@ namespace Race_management.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "2e283abe-712d-4750-87af-34f25ccdaff5",
-                            RoleId = "34065a31-7772-4893-bb6b-29ceb6ca9f33"
+                            UserId = "f6e4a437-5d44-410e-8471-3e35112faa58",
+                            RoleId = "aa366280-f7a2-417f-bfa2-c19c2f054bff"
                         },
                         new
                         {
-                            UserId = "4da169fc-dd73-4595-8455-f56ac38f88ec",
-                            RoleId = "5185b815-b457-4eb1-befd-1ea691188c89"
+                            UserId = "2dc3e4e8-5b7e-446e-909e-dbcb6f6e35b7",
+                            RoleId = "14d4435e-96ac-4e25-9a4a-97656e9d0c96"
                         },
                         new
                         {
-                            UserId = "b9cb3c98-ca92-4b85-821d-29fe445058cd",
-                            RoleId = "5185b815-b457-4eb1-befd-1ea691188c89"
+                            UserId = "b9923e70-ef65-48de-a15b-9c62db600c31",
+                            RoleId = "14d4435e-96ac-4e25-9a4a-97656e9d0c96"
                         },
                         new
                         {
-                            UserId = "66bc09b3-cbc3-4f72-a572-693be9fb8465",
-                            RoleId = "3b5f2d43-4c91-4968-9219-aede3acc619a"
+                            UserId = "fef1d6fa-147a-4842-a95d-68efdeafef25",
+                            RoleId = "6805597b-6688-4c7f-98d1-46ef376a1500"
                         },
                         new
                         {
-                            UserId = "72909342-5c2f-4667-b294-45265a2b64a7",
-                            RoleId = "3b5f2d43-4c91-4968-9219-aede3acc619a"
+                            UserId = "ea5a2610-86f1-4776-be5f-8bb96d8f74b7",
+                            RoleId = "6805597b-6688-4c7f-98d1-46ef376a1500"
                         });
                 });
 
@@ -280,9 +280,9 @@ namespace Race_management.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2e283abe-712d-4750-87af-34f25ccdaff5",
+                            Id = "f6e4a437-5d44-410e-8471-3e35112faa58",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1ce3c51c-b289-4525-9a05-e5c965c6934a",
+                            ConcurrencyStamp = "0cc9eb85-f56d-4640-bcbb-08d9e8b1f1ef",
                             Email = "ashkan110mir@gmail.com",
                             EmailConfirmed = true,
                             LastName = "Mirdamadi",
@@ -290,18 +290,18 @@ namespace Race_management.Migrations
                             Name = "Ashkan",
                             NormalizedEmail = "ASHKAN110MIR@GMAIL.COM",
                             NormalizedUserName = "ASHKANMIR",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDTyMJC6ECMTQqo3oz5UwuPYAbaXTRa+zcRM6Esy5onjO3P6ofaTt6t5pxm3oqNFVw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEE60dtlpHXeP9rkP8OKur8MD0MXh9FaNEFGdA8Yvkc0CvcMWUagcV8KwgMmkftxsCw==",
                             PhoneNumber = "09908752252",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "a6a25421-1efc-46d2-9aff-d8c3ba3c376b",
+                            SecurityStamp = "791502dc-04c4-4639-8441-ce039ebba0c3",
                             TwoFactorEnabled = false,
                             UserName = "Ashkanmir"
                         },
                         new
                         {
-                            Id = "4da169fc-dd73-4595-8455-f56ac38f88ec",
+                            Id = "2dc3e4e8-5b7e-446e-909e-dbcb6f6e35b7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a611085a-dea1-4c5b-a231-f4ba9eda4ac4",
+                            ConcurrencyStamp = "79e79c83-9b86-4362-9545-cd6e6d784a3d",
                             Email = "aliMohammadi@yahoo.com",
                             EmailConfirmed = true,
                             LastName = "Mohammadi",
@@ -309,18 +309,18 @@ namespace Race_management.Migrations
                             Name = "Ali",
                             NormalizedEmail = "ALIMOHAMMADI@YAHOO.COM",
                             NormalizedUserName = "ALIZM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHUnnFh17bPpHc63BLWXLx98MBrCaoXAh321GhVuXLd5m9CfwuWW7PX2R92hoLHHkA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBCkcNp0M7HnXB4HjDQxv7vAFK4Iu3WEpltKgWUBHPudcitv0sGpx3wPyyal03MeSg==",
                             PhoneNumber = "09139875623",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "90cfa873-40da-4c51-a1e2-3604450b5ccb",
+                            SecurityStamp = "f6b2fb98-bf7e-41d7-bddd-268e8f44fddf",
                             TwoFactorEnabled = false,
                             UserName = "AliZM"
                         },
                         new
                         {
-                            Id = "b9cb3c98-ca92-4b85-821d-29fe445058cd",
+                            Id = "b9923e70-ef65-48de-a15b-9c62db600c31",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9e884686-65cf-43e7-9711-67f85d1f78f6",
+                            ConcurrencyStamp = "3a4556a4-3dfa-4cdb-960b-d9c7ea412725",
                             Email = "AhmadiReza@outlook.com",
                             EmailConfirmed = true,
                             LastName = "Ahmadi",
@@ -328,18 +328,18 @@ namespace Race_management.Migrations
                             Name = "Reza",
                             NormalizedEmail = "AHMADIREZA@OUTLOOK.COM",
                             NormalizedUserName = "REZAAHMADI",
-                            PasswordHash = "AQAAAAIAAYagAAAAENqefe0s9BbLIoSwCJThuXLMaw3hH07D5thEleKrmNuKQVvxabyuQs3kUxXY1+ZQ/A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEODJ3bdlMuwCkUfoXTw8sAmB+UKdu9m0fjRFYz4IqyhsWG8I2SJOqrirTWI1idsIJg==",
                             PhoneNumber = "09139958123",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "e62ce10e-4893-4ad3-a0e6-5128c805753c",
+                            SecurityStamp = "87fb9dfe-14be-4bd8-970e-d179252a462b",
                             TwoFactorEnabled = false,
                             UserName = "RezaAhmadi"
                         },
                         new
                         {
-                            Id = "66bc09b3-cbc3-4f72-a572-693be9fb8465",
+                            Id = "fef1d6fa-147a-4842-a95d-68efdeafef25",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d8cf0b42-1375-4db2-afc1-000381f92d28",
+                            ConcurrencyStamp = "d6b257e4-46cb-4557-9122-c337fb17ef5b",
                             Email = "Akbari@outlook.com",
                             EmailConfirmed = true,
                             LastName = "Akbari",
@@ -347,18 +347,18 @@ namespace Race_management.Migrations
                             Name = "Fatemeh",
                             NormalizedEmail = "AKBARI@OUTLOOK.COM",
                             NormalizedUserName = "FATEMEHAK",
-                            PasswordHash = "AQAAAAIAAYagAAAAEF+GvxenKuY7tBfRTUSIyUALYhNeW67cuoSuilg9wIi8is7ctZsN4sUFt0+NHS4rAw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAqRajVBEnyqduKfSoEcqvaxdPyqjJX7sQEMKwBKnxtspx+c2Xok2YQG2/O8/W6+Og==",
                             PhoneNumber = "09137456723",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "2c93d47d-306e-4fcf-9c70-6814b57670fc",
+                            SecurityStamp = "3b60b7d1-5e55-4bc8-9504-213dec653c6f",
                             TwoFactorEnabled = false,
                             UserName = "FatemehAk"
                         },
                         new
                         {
-                            Id = "72909342-5c2f-4667-b294-45265a2b64a7",
+                            Id = "ea5a2610-86f1-4776-be5f-8bb96d8f74b7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7c872c74-9952-4bab-a320-02bac3de39e7",
+                            ConcurrencyStamp = "d15deb8c-0e61-4f3c-a8f5-282d1fe45580",
                             Email = "Rahimi@yahoo.com",
                             EmailConfirmed = true,
                             LastName = "Rahimi",
@@ -366,10 +366,10 @@ namespace Race_management.Migrations
                             Name = "Amir",
                             NormalizedEmail = "RAHIMI@YAHOO.COM",
                             NormalizedUserName = "RAHIMIA",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAzB+Q03KVv8w3l2POyw7zdpmYz2VFB42Hj+lWZVyy8qU2gQHmgxVR1TC4RvKDXC0Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFeQZETXXfexAeLGNMRmlZi87KF0ZgwrX0yRqq9Poj3VgJT2xRkwPvrUyAieU9NAjA==",
                             PhoneNumber = "09139874571",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "d936f451-6112-4b4f-b3c2-48084a9efbb7",
+                            SecurityStamp = "c3f8280e-9674-4046-b606-1ee892d8c7c9",
                             TwoFactorEnabled = false,
                             UserName = "RahimiA"
                         });
@@ -415,7 +415,7 @@ namespace Race_management.Migrations
                             Isactive = true,
                             ShowDate = new DateTime(2024, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ShowTitle = "اجرا 1",
-                            ShowplayerId = "66bc09b3-cbc3-4f72-a572-693be9fb8465"
+                            ShowplayerId = "fef1d6fa-147a-4842-a95d-68efdeafef25"
                         },
                         new
                         {
@@ -424,7 +424,7 @@ namespace Race_management.Migrations
                             Isactive = true,
                             ShowDate = new DateTime(2024, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ShowTitle = "اجرا 2",
-                            ShowplayerId = "72909342-5c2f-4667-b294-45265a2b64a7"
+                            ShowplayerId = "ea5a2610-86f1-4776-be5f-8bb96d8f74b7"
                         });
                 });
 
