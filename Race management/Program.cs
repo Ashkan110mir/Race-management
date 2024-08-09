@@ -6,6 +6,7 @@ using Race_management.Areas.Admin.Data.AdminTeamData;
 using Race_management.Areas.Admin.Data.IAdminCoachData;
 using Race_management.Data;
 using Race_management.Models;
+using Race_management.Utility.ReCaptcha;
 using static System.Formats.Asn1.AsnWriter;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,6 +40,8 @@ builder.Services.AddScoped<IAdminShowData, AdminShowData>();
 builder.Services.AddScoped<IAdminPlayerData, AdminPlayerData>();
 builder.Services.AddScoped<IAdminTeamData, AdminTeamData>();
 builder.Services.AddScoped<IAdminCoachData, AdminCoachData>();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddTransient<IGoogleRecatcha, GoogleRecatcha>();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
