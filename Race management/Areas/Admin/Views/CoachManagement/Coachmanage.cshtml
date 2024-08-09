@@ -1,0 +1,41 @@
+﻿@model List<CoachManageViewModel>
+@{
+    ViewData["Title"] = "Coachmanage";
+}
+
+<h1>Coachmanage</h1>
+
+@{
+    if (Model != null && Model.Count > 0)
+    {
+        <table>
+            <tr>
+                <th>نام مربی</th>
+                <th>نام خانوادگی مربی</th>
+                <th>ادرس ایمیل مربی</th>
+                <th>شماره موبایل مربی</th>
+                <th>تیم های مربی</th>
+            </tr>
+            @foreach (var coach in Model)
+            {
+                <tr>
+                    <td>@coach.CoachName</td>
+                    <td>@coach.CoachFamily</td>
+                    <td>@coach.CoachEmail</td>
+                    <td>@coach.CoachPhone</td>
+                    <td>
+                        @foreach (var team in coach.CoachTeamNames)
+                        {
+                            <div>@team</div>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <div> هیچ مربی موجود نیست  </div>
+    }
+
+}

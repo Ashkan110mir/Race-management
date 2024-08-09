@@ -15,5 +15,6 @@ namespace Race_management.Areas.Admin.Data.AdminTeamData
         public Team GetTeamById(int teamId);
 
         public bool EditTeam(Team newteam,int id);
+        public List<string> GetTeamByCoach(string CoachId);  
     }
 }

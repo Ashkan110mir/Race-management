@@ -1,4 +1,5 @@
-﻿using Race_management.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using Race_management.Data;
 using Race_management.Models;
 
 namespace Race_management.Areas.Admin.Data.AdminTeamData
@@ -29,7 +30,7 @@ namespace Race_management.Areas.Admin.Data.AdminTeamData
                 return false;
             }
         }
-
+        [HttpPost]
         public bool EditTeam(Team newteam, int id)
         {
             try
@@ -61,6 +62,11 @@ namespace Race_management.Areas.Admin.Data.AdminTeamData
         public List<Team> GetAllTeam()
         {
             return _db.Teams.ToList();
+        }
+
+        public List<string> GetTeamByCoach(string CoachId)
+        {
+            return _db.Teams.Where(e=>e.CoachId== CoachId).Select(e=>e.TeamName).ToList();    
         }
 
         public Team GetTeamById(int teamId)
