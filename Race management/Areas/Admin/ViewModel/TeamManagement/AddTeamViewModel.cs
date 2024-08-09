@@ -17,9 +17,6 @@ namespace Race_management.Areas.Admin.ViewModel.TeamManagement
         [MaxLength(60)]
         public string? TeamName { get; set; }
 
-
-        [Display(Name ="لطفا بازیکن تیم را انتخاب کنید.")]    
-        public List<string>? SelectedPlayerId { get; set; }
         [Display(Name ="مربی تیم:")]
         [Required(ErrorMessage ="لطفا مربی تیم را انتخاب کنید.")]
         public string? SelectedCoachId { get; set; }

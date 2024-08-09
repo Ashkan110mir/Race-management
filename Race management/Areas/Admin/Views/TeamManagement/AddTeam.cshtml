@@ -23,17 +23,6 @@
     <span asp-validation-for="SelectedCoachId"></span>
     <br />
 
-    <label asp-for="SelectedPlayerId"></label>
-    <br />
-    <select asp-for="SelectedPlayerId">
-        @foreach(var player in Model.Players)
-        {
-            <option value="@player.Id">@player.Name &nbsp @player.LastName</option>
-        }
-    </select>
-    <span asp-validation-for="SelectedPlayerId"></span>
-    <br />
-
      <input type="submit" value="افزودن" />
 </form>
 

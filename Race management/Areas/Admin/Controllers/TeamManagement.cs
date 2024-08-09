@@ -59,12 +59,6 @@ namespace Race_management.Areas.Admin.Controllers
 
                 };
                 var getplayer = new List<RmUserIdentity>();
-                if (newTeam.SelectedPlayerId != null && newTeam.SelectedPlayerId.Count > 0)
-                {
-                    getplayer = _adminPlayerData.GetPlayersById(newTeam.SelectedPlayerId);
-                    team.Players = getplayer;
-                }
-
                 var addstatus = _adminTeamData.AddTeam(team);
                 if (addstatus)
                 {
