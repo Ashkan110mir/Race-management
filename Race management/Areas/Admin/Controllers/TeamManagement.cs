@@ -43,8 +43,8 @@ namespace Race_management.Areas.Admin.Controllers
         public async Task<IActionResult> AddTeam()
         {
             AddTeamViewModel vm = new AddTeamViewModel();
-            vm.Players = (List<Models.RmUserIdentity>?)await _adminPlayerData.GetAllPlayer();
             vm.Coach = (List<RmUserIdentity>)await _adminCoachdata.GetAllCoach();
+            ViewBag.isadd = 1;
             return View(vm);
         }
         [HttpPost]
@@ -71,6 +71,77 @@ namespace Race_management.Areas.Admin.Controllers
                 }
             }
             return View();
+        }
+
+        public IActionResult DeleteTeam(int teamid)
+        {
+            if (teamid != 0)
+            {
+                var deletestatus = _adminTeamData.RemoveTeam(teamid);
+                if (deletestatus)
+                {
+                    return RedirectToAction(nameof(TeamManage));
+                }
+                else
+                {
+                    ViewBag.massage = "خطایی در حذف رخ داد";
+                    return View();
+                }
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> EditTeam(int teamid)
+        {
+            if (teamid != 0)
+            {
+                var selectedteam = new AddTeamViewModel();
+                var team = _adminTeamData.GetTeamById(teamid);
+                if (team == null)
+                {
+                    return NotFound();
+                }
+                selectedteam.Coach = (List<RmUserIdentity>)await _adminCoachdata.GetAllCoach();
+                selectedteam.TeamName = team.TeamName;
+                selectedteam.SelectedCoachId = team.CoachId;
+                ViewBag.id = teamid;
+                ViewBag.isadd = 0;
+                return View("AddTeam", selectedteam);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditTeam(AddTeamViewModel EditTeam, int teamid)
+        {
+            if (ModelState.IsValid)
+            {
+                var team = new Team()
+                {
+                    TeamName = EditTeam.TeamName,
+                    TeamId = teamid,
+                    CoachId = EditTeam.SelectedCoachId
+
+                };
+                bool editstatus = _adminTeamData.EditTeam(team, team.TeamId);
+                if (editstatus)
+                {
+                    return RedirectToAction(nameof(TeamManage));
+                }
+                else
+                {
+                    ModelState.AddModelError("", "مشکلی در ویرایش رخ داد");
+                    EditTeam.Coach = (List<RmUserIdentity>)await _adminCoachdata.GetAllCoach();
+                    return View("AddTeam", EditTeam);
+                }
+            }
+            else
+            {
+                EditTeam.Coach = (List<RmUserIdentity>)await _adminCoachdata.GetAllCoach();
+                return View("AddTeam", EditTeam);
+            }
         }
     }
 }

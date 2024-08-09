@@ -7,8 +7,6 @@ namespace Race_management.Areas.Admin.ViewModel.TeamManagement
     public class AddTeamViewModel
     {
         //view need
-        public List<RmUserIdentity>? Players { get; set; }
-
         public List<RmUserIdentity>? Coach { get; set; }
 
         //admin send to server

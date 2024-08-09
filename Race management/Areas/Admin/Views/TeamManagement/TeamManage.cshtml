@@ -5,6 +5,7 @@
 
 <h1>TeamManage</h1>
 <a asp-action="AddTeam" asp-controller="TeamManagement">افزودن تیم جدید</a>
+<div>@ViewBag.massage</div>
 @{
     if (Model != null && Model.Count > 0)
     {
@@ -14,6 +15,7 @@
                 <th>نام تیم</th>
                 <th>تعداد بازیکن</th>
                 <th>مربی تیم</th>
+                <th>عملیات</th>
             </tr>
             @foreach (var team in Model)
             {
@@ -28,10 +30,16 @@
                         }
                         else
                         {
-                        @team.CoachName
+                            @team.CoachName
                         }
                     </td>
+                    <td>
+                        <a asp-action="DeleteTeam" asp-controller="TeamManagement" asp-route-teamid="@team.TeamId">حذف</a>
+                        <a asp-action="EditTeam" asp-controller="TeamManagement" asp-route-teamid="@team.TeamId">ویرایش</a>
+                        <a></a>
+                    </td>
                 </tr>
+
             }
         </table>
     }

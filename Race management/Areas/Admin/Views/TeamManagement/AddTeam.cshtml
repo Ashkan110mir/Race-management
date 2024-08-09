@@ -3,13 +3,13 @@
     ViewData["Title"] = "AddTeam";
 }
 
-<h1>AddTeam</h1>
-<form method="post" asp-action="AddTeam" asp-controller="TeamManagement">
+
+<form method="post" asp-action=@((ViewBag.isadd==1?"AddTeam":"EditTeam")) asp-controller="TeamManagement" asp-route-teamid="@ViewBag.id">
     <div asp-validation-summary="ModelOnly"></div>
     <br />
 
     <label asp-for="TeamName"></label>
-    <input asp-for="TeamName" />
+    <input asp-for="TeamName" value=@((ViewBag.isadd==1?"":Model.TeamName)) />
     <span asp-validation-for="TeamName"></span>
     <br />
 
@@ -17,12 +17,20 @@
     <select asp-for="SelectedCoachId">
         @foreach(var coach in Model.Coach)
         {
-            <option value="@coach.Id">@coach.Name &nbsp @coach.LastName</option>
+            if (Model.SelectedCoachId != null && Model.SelectedCoachId == coach.Id)
+            {
+                <option value="@coach.Id" selected>@coach.Name &nbsp @coach.LastName</option>
+            }
+            else
+            {
+                <option value="@coach.Id">@coach.Name &nbsp @coach.LastName</option>
+
+            }
         }
     </select>
     <span asp-validation-for="SelectedCoachId"></span>
     <br />
 
-     <input type="submit" value="افزودن" />
+     <input type="submit" value=@((ViewBag.isadd==1?"افزودن":"ویرایش")) />
 </form>
 

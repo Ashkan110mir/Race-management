@@ -9,5 +9,11 @@ namespace Race_management.Areas.Admin.Data.AdminTeamData
         public List<Team> GetAllTeam();
 
         public bool AddTeam(Team team);
+
+        public bool RemoveTeam(int id);
+
+        public Team GetTeamById(int teamId);
+
+        public bool EditTeam(Team newteam,int id);
     }
 }
