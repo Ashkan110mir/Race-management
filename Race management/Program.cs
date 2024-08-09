@@ -27,9 +27,13 @@ builder.Services.AddIdentity<RmUserIdentity, IdentityRole>(e =>
     e.User.RequireUniqueEmail = true;
     e.SignIn.RequireConfirmedEmail = true;
 
+    e.Lockout.MaxFailedAccessAttempts = 5;
+    e.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
+
 }).AddEntityFrameworkStores<RmContext>().AddDefaultTokenProviders().AddErrorDescriber<ErrorToFarsi>();
 builder.Services.ConfigureApplicationCookie(options =>
 {
+    options.ExpireTimeSpan = TimeSpan.FromDays(10);
     options.LoginPath = new PathString("/Admin/AdminAccouningt/Login");
     //options.AccessDeniedPath = new PathString("/Account/AccessDenied");
     options.Events.OnRedirectToLogin = context =>
