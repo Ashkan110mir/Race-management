@@ -17,7 +17,7 @@ namespace Race_management.ViewModel.UserAccounting
         public string? LastName { get; set; }
         [Required(ErrorMessage = "لطفا نام کاربری خود را وارد کنید")]
         [Display(Name = "نام کاربرِی:")]
-        //[Remote()]
+        [Remote("IsUserNameInUse", "UserAccounting",HttpMethod ="Post", AdditionalFields = "__RequestVerificationToken")]
         public string? Username { get; set; }
 
 
@@ -36,7 +36,7 @@ namespace Race_management.ViewModel.UserAccounting
         [Required(ErrorMessage = "لطفا ایمیل خود را وارد کنید.")]
         [Display(Name = "ایمیل:", Prompt = "xxxxxx@xxxx.xxx")]
         [EmailAddress(ErrorMessage ="لطفا یک ایمیل معتبر وارد کنید")]
-        //[Remote]
+        [Remote("IsEmailInuse", "UserAccounting", HttpMethod = "Post", AdditionalFields = "__RequestVerificationToken")]
         public string? Email { get; set; }
 
 

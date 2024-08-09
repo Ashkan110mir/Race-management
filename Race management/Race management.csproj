@@ -31,4 +31,8 @@
     <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ErrorsToFrasi\ErrorsToFrasi.csproj" />
+  </ItemGroup>
+
 </Project>

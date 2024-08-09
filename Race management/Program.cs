@@ -1,3 +1,4 @@
+using ErrorsToFrasi;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Race_management.Areas.Admin.Data.AdminPlayerData;
@@ -6,6 +7,7 @@ using Race_management.Areas.Admin.Data.AdminTeamData;
 using Race_management.Areas.Admin.Data.IAdminCoachData;
 using Race_management.Data;
 using Race_management.Models;
+using Race_management.Utility.Email_Sender;
 using Race_management.Utility.ReCaptcha;
 using static System.Formats.Asn1.AsnWriter;
 
@@ -14,10 +16,18 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<RmContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddIdentity<RmUserIdentity,IdentityRole>(e=>
+builder.Services.AddIdentity<RmUserIdentity, IdentityRole>(e =>
 {
-    
-}).AddEntityFrameworkStores<RmContext>().AddDefaultTokenProviders();
+    e.Password.RequireNonAlphanumeric = true;
+    e.Password.RequiredLength = 8;
+    e.Password.RequireUppercase = true;
+    e.Password.RequireDigit = true;
+    e.Password.RequireLowercase = true;
+
+    e.User.RequireUniqueEmail = true;
+    e.SignIn.RequireConfirmedEmail = true;
+
+}).AddEntityFrameworkStores<RmContext>().AddDefaultTokenProviders().AddErrorDescriber<ErrorToFarsi>();
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = new PathString("/Admin/AdminAccouningt/Login");
@@ -42,6 +52,7 @@ builder.Services.AddScoped<IAdminTeamData, AdminTeamData>();
 builder.Services.AddScoped<IAdminCoachData, AdminCoachData>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<IGoogleRecatcha, GoogleRecatcha>();
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
