@@ -1,0 +1,39 @@
+﻿@model LogInViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<form method="post" asp-action="Login" asp-controller="UserAccounting">
+    <div asp-validation-summary="ModelOnly"></div>
+    <br />
+
+    <label asp-for="UserNameOrEmail"></label>
+    <input asp-for="UserNameOrEmail" />
+    <span asp-validation-for="UserNameOrEmail"></span>
+    <br />
+
+    <label asp-for="Password"></label>
+    <input asp-for="Password" />
+    <span asp-validation-for="Password"></span>
+
+    <label asp-for="RememberMe"></label>
+    <input asp-for="RememberMe" />
+    <br />
+
+    <div class="g-recaptcha" data-sitekey="6Lc4PB8qAAAAAFw0byaz-6OL4eWbLFzBbizvFrnn"></div>
+    <br />
+
+    <input type="submit" value="ورود" />
+    <br />
+</form>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    }
+}
+

@@ -11,12 +11,14 @@ namespace Race_management.Controllers
     {
         private IGoogleRecatcha _recaptcha;
         private UserManager<RmUserIdentity> _usermanager;
+        private SignInManager<RmUserIdentity> _signinmanager;
         private IEmailSender _emailSender;
-        public UserAccounting(IGoogleRecatcha recaptcha, UserManager<RmUserIdentity> userManager, IEmailSender emailSender)
+        public UserAccounting(IGoogleRecatcha recaptcha, UserManager<RmUserIdentity> userManager, IEmailSender emailSender, SignInManager<RmUserIdentity> signinmanager)
         {
             _recaptcha = recaptcha;
             _usermanager = userManager;
             _emailSender = emailSender;
+            _signinmanager = signinmanager;
         }
         public IActionResult Register()
         {
@@ -31,6 +33,11 @@ namespace Race_management.Controllers
                 if (!await _recaptcha.ISRecapthaTrue())
                 {
                     ModelState.AddModelError("", "لطفا برای ادامه کپچا گوگل را کامل کنید.");
+                    return View(newuser);
+                }
+                if(!newuser.phoneNumer.StartsWith("09"))
+                {
+                    ModelState.AddModelError("", "لطفا شماره تلفن معتبر وارد کنید.");
                     return View(newuser);
                 }
                 var user = new RmUserIdentity()
@@ -111,7 +118,62 @@ namespace Race_management.Controllers
 
         public IActionResult Login()
         {
+            if(User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
+        }
+        [HttpPost]
+        public async Task <IActionResult> Login(LogInViewModel loginuser)
+        {
+            if(ModelState.IsValid)
+            {
+                if(User.Identity.IsAuthenticated)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                if (await _recaptcha.ISRecapthaTrue())
+                {
+                   
+                    var result = await _signinmanager.PasswordSignInAsync(loginuser.UserNameOrEmail, loginuser.Password, loginuser.RememberMe,true);
+                    if(result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    if(result.IsNotAllowed)
+                    {
+                        ModelState.AddModelError("", "امکان ورود به حساب وجود ندارد لطفا ابتدا از اینکه ایمیل خود را تایید کرده اید مطمئن شوید.");
+                        return View(loginuser);
+                    }
+                    if(result.IsLockedOut)
+                    {
+                        ModelState.AddModelError("", "حساب شما به خاطر تلاش بیش از حد قفل شده است لطفا بعدا وارد شوید.");
+                        return View(loginuser);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "نام کاربری یا رمز عبور درست نیست.");
+                        return View(loginuser);
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "لطفا برای ادامه ریکپچا گوگل را کامل کنید.");
+                    return View(loginuser);
+                }
+
+            }
+            else
+            {
+                return View(loginuser);
+            }
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await _signinmanager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+
         }
         #region Check email and username not in used
         [HttpPost]

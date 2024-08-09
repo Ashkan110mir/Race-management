@@ -22,13 +22,26 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">خانه</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark"  asp-controller="Home" asp-action="Index">ورود</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="UserAccounting" asp-action="Register">ثبت نام</a>
-                        </li>
-                        
+                        @{
+                            if (!User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="UserAccounting" asp-action="Login">ورود</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="UserAccounting" asp-action="Register">ثبت نام</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="" asp-action="">ورود به حساب کاربری</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="UserAccounting" asp-action="Logout">خروج از حساب</a>
+                                </li>
+                            }
+                        }
                     </ul>
                 </div>
             </div>

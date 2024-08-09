@@ -59,9 +59,10 @@ namespace Race_management.Areas.Admin.Controllers
 
 
         [Authorize(Roles ="Admin")]
-        public IActionResult Logout()
+        public async Task <IActionResult> Logout()
         {
-            return View();
+            await _signinmanager.SignOutAsync();
+            return RedirectToAction("Index","Home");
         }
     }
 }
