@@ -21,6 +21,7 @@
             <th>نام خانوادگی</th>
             <th>ایمیل</th>
             <th>شماره موبایل</th>
+            <td>نقش</td>
             <th>عملیات</th>
         </tr>
         <tr>
@@ -28,6 +29,12 @@
             <td>@Model.LastName</td>
             <td>@Model.Email</td>
             <td>@Model.PhoneNumber</td>
+            <td>
+                @if(User.IsInRole("Player"))
+                {
+                    <div>بازیکن</div>
+                }
+            </td>
             <td>
                 <a>ویرایش اطلاعات شخصی</a>
             </td>

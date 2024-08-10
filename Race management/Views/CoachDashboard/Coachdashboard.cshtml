@@ -1,0 +1,49 @@
+﻿@model RmUserIdentity
+@{
+    ViewData["Title"] = "Coachdashboad";
+}
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 30px;
+    }
+
+        table td, th {
+            padding: 30px;
+        }
+</style>
+
+<h1>الاعات شخصی</h1>
+<table>
+    <tr>
+        <th>نام</th>
+        <th>نام خانوادگی</th>
+        <th>ایمیل</th>
+        <th>شماره موبایل</th>
+        <th>نقش</th>
+        <th>عملیات</th>
+    </tr>
+    <tr>
+        <td>@Model.Name</td>
+        <td>@Model.LastName</td>
+        <td>@Model.Email</td>
+        <td>@Model.PhoneNumber</td>
+        <td>
+            @if (User.IsInRole("Coach"))
+            {
+                <div>مربی</div>
+            }
+        </td>
+        <td>
+            <a>ویرایش اطلاعات</a>
+        </td>
+    </tr>
+</table>
+
+<br />
+
+<a>امتیاز دهی به اجراها</a>
+<br />
+<a>مدیریت تیم</a>
+
+
