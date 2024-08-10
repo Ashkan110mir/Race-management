@@ -6,6 +6,8 @@ using Race_management.Areas.Admin.Data.AdminShowData;
 using Race_management.Areas.Admin.Data.AdminTeamData;
 using Race_management.Areas.Admin.Data.IAdminCoachData;
 using Race_management.Data;
+using Race_management.Data.IPlayerCoachData;
+using Race_management.Data.PlayerShowData;
 using Race_management.Models;
 using Race_management.Utility.Email_Sender;
 using Race_management.Utility.ReCaptcha;
@@ -54,6 +56,11 @@ builder.Services.AddScoped<IAdminShowData, AdminShowData>();
 builder.Services.AddScoped<IAdminPlayerData, AdminPlayerData>();
 builder.Services.AddScoped<IAdminTeamData, AdminTeamData>();
 builder.Services.AddScoped<IAdminCoachData, AdminCoachData>();
+
+builder.Services.AddScoped<IPlayerCoachData,PlayerCoachData>();
+builder.Services.AddScoped<IPlayerShowData, PlayerShowData>();
+
+
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<IGoogleRecatcha, GoogleRecatcha>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();

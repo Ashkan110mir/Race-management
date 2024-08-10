@@ -1,0 +1,81 @@
+﻿@model PlayerDashboardViewModel
+@{
+    ViewData["Title"] = "Playerdashboard";
+}
+
+<h1>Playerdashboard</h1>
+<style>
+    table{
+        border-collapse:separate;
+        border-spacing:30px;
+    }
+    table td,th{
+        padding:30px;
+    }
+</style>
+<h1>اطلاعات شخصی</h1>
+<div>
+    <table>
+        <tr>
+            <th>نام</th>
+            <th>نام خانوادگی</th>
+            <th>ایمیل</th>
+            <th>شماره موبایل</th>
+            <th>عملیات</th>
+        </tr>
+        <tr>
+            <td>@Model.Name</td>
+            <td>@Model.LastName</td>
+            <td>@Model.Email</td>
+            <td>@Model.PhoneNumber</td>
+            <td>
+                <a>ویرایش اطلاعات شخصی</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<hr />
+@{
+    if (Model.PlayerShow != null && Model.PlayerShow.Count > 0)
+    {
+        <div>
+            <table style="border-spacing:20px;border-collapse:separate;">
+                <tr>
+                    <th>نام اجرا</th>
+                    <th>تاریخ اجرا</th>
+                    <th>مربی های امتیاز دهنده</th>
+                    <th>متوسط امتیاز</th>
+                </tr>
+                @foreach (var show in Model.PlayerShow)
+                {
+                    <tr style="width:100%;">
+                        <td>@show.ShowTitle</td>
+                        <td>@show.ShowDate</td>
+                        <td>
+                            @foreach (var coachname in show.CoachNames)
+                            {
+                                <div>@coachname</div>
+                            }
+                        </td>
+                        <td>
+                            @if (show.AverageScore != -1)
+                            {
+                                @show.AverageScore
+                            }
+                            else
+                            {
+                                <div>هنوز نمره ایی برای اجرا شما ثبت نشده است</div>
+                            }
+
+
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+    else
+    {
+        <div>شما هیچ اجرایی ندارید</div>
+    }
+}

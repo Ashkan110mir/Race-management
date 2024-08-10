@@ -35,7 +35,7 @@
                             else
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-controller="" asp-action="">@((User.IsInRole("Coach")?"ورود به پنل مربی":"ورود به پنل بازیکن"))</a>
+                                    <a class="nav-link text-dark" asp-controller="PlayerDashboard" asp-action="Playerdashboard">@((User.IsInRole("Coach") ? "ورود به پنل مربی" : "ورود به پنل بازیکن"))</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-controller="UserAccounting" asp-action="Logout">خروج از حساب</a>
