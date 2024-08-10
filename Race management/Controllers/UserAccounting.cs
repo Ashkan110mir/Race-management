@@ -35,7 +35,7 @@ namespace Race_management.Controllers
                     ModelState.AddModelError("", "لطفا برای ادامه کپچا گوگل را کامل کنید.");
                     return View(newuser);
                 }
-                if(!newuser.phoneNumer.StartsWith("09"))
+                if (!newuser.phoneNumer.StartsWith("09"))
                 {
                     ModelState.AddModelError("", "لطفا شماره تلفن معتبر وارد کنید.");
                     return View(newuser);
@@ -47,10 +47,10 @@ namespace Race_management.Controllers
                     UserName = newuser.Username,
                     Email = newuser.Email,
                     PhoneNumber = newuser.phoneNumer,
-                    EmailConfirmed=false,
-                    PhoneNumberConfirmed=true,
+                    EmailConfirmed = false,
+                    PhoneNumberConfirmed = true,
                 };
-                var createUserResult = await _usermanager.CreateAsync(user, newuser.Password);            
+                var createUserResult = await _usermanager.CreateAsync(user, newuser.Password);
                 if (createUserResult.Succeeded)
                 {
                     var addtorole = await _usermanager.AddToRoleAsync(user, "Player");
@@ -67,7 +67,7 @@ namespace Race_management.Controllers
                     {
                         foreach (var error in addtorole.Errors)
                         {
-                            ModelState.AddModelError("",error.Description);
+                            ModelState.AddModelError("", error.Description);
                         }
                         return View(newuser);
 
@@ -77,7 +77,7 @@ namespace Race_management.Controllers
                 {
                     foreach (var error in createUserResult.Errors)
                     {
-                        ModelState.AddModelError("", error.Description);               
+                        ModelState.AddModelError("", error.Description);
                     }
                     return View(newuser);
                 }
@@ -90,13 +90,13 @@ namespace Race_management.Controllers
         }
         public async Task<IActionResult> ConfirmEmail(string Username, string token)
         {
-            if(Username!=null&& token!=null)
+            if (Username != null && token != null)
             {
-                var user= await _usermanager.FindByNameAsync(Username);
-                if(user!=null)
+                var user = await _usermanager.FindByNameAsync(Username);
+                if (user != null)
                 {
-                  var confirmemail= await _usermanager.ConfirmEmailAsync(user, token);
-                    if(confirmemail.Succeeded)
+                    var confirmemail = await _usermanager.ConfirmEmailAsync(user, token);
+                    if (confirmemail.Succeeded)
                     {
                         ViewBag.massage = "تایید ایمیل با موفقیت انجام شد.";
                         return View(nameof(Register));
@@ -105,7 +105,7 @@ namespace Race_management.Controllers
                     {
                         return NotFound();
                     }
-                    
+
                 }
                 else
                 {
@@ -118,44 +118,68 @@ namespace Race_management.Controllers
 
         public IActionResult Login()
         {
-            if(User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Home");
             }
             return View();
         }
         [HttpPost]
-        public async Task <IActionResult> Login(LogInViewModel loginuser)
+        public async Task<IActionResult> Login(LogInViewModel loginuser)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                if(User.Identity.IsAuthenticated)
+                if (User.Identity.IsAuthenticated)
                 {
                     return RedirectToAction("Index", "Home");
                 }
                 if (await _recaptcha.ISRecapthaTrue())
                 {
-                   
-                    var result = await _signinmanager.PasswordSignInAsync(loginuser.UserNameOrEmail, loginuser.Password, loginuser.RememberMe,true);
-                    if(result.Succeeded)
+                    var user = new RmUserIdentity();
+                    bool isUserCoachorPlayer = false;
+
+                    user = await _usermanager.FindByNameAsync(loginuser.UserNameOrEmail);
+                    if (user == null)
                     {
-                        return RedirectToAction("Index", "Home");
+                        user = await _usermanager.FindByEmailAsync(loginuser.UserNameOrEmail);
                     }
-                    if(result.IsNotAllowed)
+                    if (user != null)
                     {
-                        ModelState.AddModelError("", "امکان ورود به حساب وجود ندارد لطفا ابتدا از اینکه ایمیل خود را تایید کرده اید مطمئن شوید.");
-                        return View(loginuser);
+                        isUserCoachorPlayer = await _usermanager.IsInRoleAsync(user, "Coach");
+                        if(isUserCoachorPlayer==false)
+                        {
+                            isUserCoachorPlayer = await _usermanager.IsInRoleAsync(user, "Player");
+                        }
                     }
-                    if(result.IsLockedOut)
+                    if (isUserCoachorPlayer)
                     {
-                        ModelState.AddModelError("", "حساب شما به خاطر تلاش بیش از حد قفل شده است لطفا بعدا وارد شوید.");
-                        return View(loginuser);
+                        var result = await _signinmanager.PasswordSignInAsync(user, loginuser.Password, loginuser.RememberMe, true);
+                        if (result.Succeeded)
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                        if (result.IsNotAllowed)
+                        {
+                            ModelState.AddModelError("", "امکان ورود به حساب وجود ندارد لطفا ابتدا از اینکه ایمیل خود را تایید کرده اید مطمئن شوید.");
+                            return View(loginuser);
+                        }
+                        if (result.IsLockedOut)
+                        {
+                            ModelState.AddModelError("", "حساب شما به خاطر تلاش بیش از حد قفل شده است لطفا بعدا وارد شوید.");
+                            return View(loginuser);
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("", "نام کاربری یا رمز عبور درست نیست.");
+                            return View(loginuser);
+                        }
                     }
                     else
                     {
                         ModelState.AddModelError("", "نام کاربری یا رمز عبور درست نیست.");
                         return View(loginuser);
                     }
+
                 }
                 else
                 {

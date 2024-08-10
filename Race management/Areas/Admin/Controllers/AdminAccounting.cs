@@ -8,28 +8,30 @@ namespace Race_management.Areas.Admin.Controllers
 {
     [Route("/Admin/[Controller]/[Action]")]
     [Area("Admin")]
-    
+
     public class AdminAccounting : Controller
     {
         private SignInManager<RmUserIdentity> _signinmanager;
-        public AdminAccounting(SignInManager<RmUserIdentity> signinmanager)
+        private UserManager<RmUserIdentity> _usermanager;
+        public AdminAccounting(SignInManager<RmUserIdentity> signinmanager, UserManager<RmUserIdentity> userManager)
         {
             _signinmanager = signinmanager;
+            _usermanager = userManager;
         }
 
         public IActionResult Login()
         {
-           
-            if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+
+            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
                 return RedirectToAction("Dashboard", "AdminDashboard");
-            }       
+            }
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel information)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(information);
             }
@@ -37,18 +39,35 @@ namespace Race_management.Areas.Admin.Controllers
             {
                 return RedirectToAction("Dashboard", "AdminDashboard");
             }
-            if(User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
+            if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
             {
 
                 ModelState.AddModelError("", "شما با حساب دیگری وارد شدید.");
                 return View(information);
             }
-            //user not login and all field are complete
-            var loginresult = await _signinmanager.PasswordSignInAsync(information.UserName, information.Password, information.RememberMe, true);
-            if(loginresult.Succeeded)
+            //chack if username and password is for admin not user
+            var user = new RmUserIdentity();
+            user.Id = _usermanager.Users.Where(e => e.UserName == information.UserName).Select(e => e.Id).FirstOrDefault();
+            bool IsUserIsAdmin=false;
+            if (user != null)
             {
-                return RedirectToAction("Dashboard", "AdminDashboard");
+                IsUserIsAdmin = await _usermanager.IsInRoleAsync(user, "Admin");
             }
+            //user exist and its admin
+            if (IsUserIsAdmin)
+            {
+                var loginresult = await _signinmanager.PasswordSignInAsync(information.UserName, information.Password, information.RememberMe, true);
+                if (loginresult.Succeeded)
+                {
+                    return RedirectToAction("Dashboard", "AdminDashboard");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "نام کاربری یا رمز عبور درست نیست");
+                    return View(information);
+                }
+            }
+            //user exist but not admin
             else
             {
                 ModelState.AddModelError("", "نام کاربری یا رمز عبور درست نیست");
@@ -58,11 +77,11 @@ namespace Race_management.Areas.Admin.Controllers
 
 
 
-        [Authorize(Roles ="Admin")]
-        public async Task <IActionResult> Logout()
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Logout()
         {
             await _signinmanager.SignOutAsync();
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

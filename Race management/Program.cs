@@ -35,7 +35,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
     options.ExpireTimeSpan = TimeSpan.FromDays(10);
     options.LoginPath = new PathString("/Admin/AdminAccouningt/Login");
-    //options.AccessDeniedPath = new PathString("/Account/AccessDenied");
+    options.AccessDeniedPath = new PathString("/Error/AccessDenied");
     options.Events.OnRedirectToLogin = context =>
     {
         var requestPath = context.Request.Path;
@@ -45,7 +45,7 @@ builder.Services.ConfigureApplicationCookie(options =>
         }
         else
         {
-            context.Response.Redirect("");
+            context.Response.Redirect("UserAccounting/Login");
         }
         return Task.CompletedTask;
     };
@@ -65,7 +65,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+app.UseStatusCodePagesWithReExecute("/Error/Notfound");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
