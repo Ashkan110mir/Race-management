@@ -2,7 +2,16 @@
 @{
     ViewData["Title"] = "Playermanage";
 }
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 30px;
+    }
 
+        table td, th {
+            padding: 30px;
+        }
+</style>
 <h1>Playermanage</h1>
 
 @{
@@ -16,6 +25,7 @@
                 <th>شماره موبایل شرکت کننده</th>
                 <th>تیم شرکت کننده</th>
                 <th>اجراها</th>
+
             </tr>
             @foreach (var player in Model)
             {
@@ -41,6 +51,7 @@
                             <br />
                         }
                     </td>
+
                 </tr>
             }
 

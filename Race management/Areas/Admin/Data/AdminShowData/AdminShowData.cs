@@ -92,7 +92,7 @@ namespace Race_management.Areas.Admin.Data.AdminShowData
 
         public List<Show> GetSHowByplayer(string playerid)
         {
-            return _db.Shows.Where(e=>e.ShowplayerId==playerid).ToList();
+            return _db.Shows.Where(e=>e.ShowplayerId==playerid && e.Isactive==true).ToList();
         }
     }
 }

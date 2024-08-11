@@ -38,5 +38,6 @@ namespace Race_management.Areas.Admin.Controllers
             }           
             return View(vm);
         }
+        
     }
 }

@@ -46,7 +46,7 @@ namespace Race_management.Data.ICoachShowData
 
         public List<Show> GetAllUnRatedByCoachShow(string CoachId)
         {
-            var a = _db.Shows.Where(e => e.ShowToCoach == null || e.ShowToCoach.Any(e => e.Coachid == CoachId) == false).Include(e => e.ShowPlayer).ToList();
+            var a = _db.Shows.Where(e => e.ShowToCoach == null || e.ShowToCoach.Any(e => e.Coachid == CoachId) == false && e.Isactive==true).Include(e => e.ShowPlayer).ToList();
             return a;
         }
 
