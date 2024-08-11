@@ -35,6 +35,7 @@ namespace Race_management.Controllers
             vm.PhoneNumber = user.PhoneNumber;
             vm.Email = user.Email;
             var shows = _playershowdata.GetShowbyUserId(user.Id);
+            
             if (shows != null)
             {
                 List<PlayerShowForDashboardViewModel> playershows = new List<PlayerShowForDashboardViewModel>();
@@ -45,10 +46,11 @@ namespace Race_management.Controllers
                         ShowTitle = show.ShowTitle,
                         ShowDate = DateCalculator.DateToShamshi(show.ShowDate),
                         CoachNames = _playercoachdata.GetCoachNameByShow(show.ShowId),
-                        AverageScore=show.AverageScore,    
+                        AverageScore=show.AverageScore, 
+                        
                     });
                 }
-
+                vm.PlayerShow= playershows;
             }
             return View(vm);
         }

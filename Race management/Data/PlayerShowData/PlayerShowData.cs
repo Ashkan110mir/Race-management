@@ -13,13 +13,13 @@ namespace Race_management.Data.PlayerShowData
 
         public List<Show> GetAllShow()
         {
-            return _db.Shows.Include(e=>e.ShowToCoach).Include(e=>e.ShowPlayer).ToList();
+            return _db.Shows.Where(e=>e.Isactive==true).Include(e=>e.ShowToCoach).Include(e=>e.ShowPlayer).ToList();
             
         }
 
         public List<Show> GetShowbyUserId(string userId)
         {
-            return _db.Shows.Where(e=>e.ShowplayerId == userId).ToList();
+            return _db.Shows.Where(e=>e.ShowplayerId == userId && e.Isactive==true).ToList();
         }
     }
 }
