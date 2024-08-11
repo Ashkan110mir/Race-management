@@ -51,19 +51,19 @@ namespace Race_management.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "aa366280-f7a2-417f-bfa2-c19c2f054bff",
+                            Id = "1976493a-ba4e-4124-937a-e6ea3d7b3dc9",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "14d4435e-96ac-4e25-9a4a-97656e9d0c96",
+                            Id = "eb31047f-de5b-452a-8ab6-cfd14dbb764e",
                             Name = "Coach",
                             NormalizedName = "COACH"
                         },
                         new
                         {
-                            Id = "6805597b-6688-4c7f-98d1-46ef376a1500",
+                            Id = "80f28635-805f-4b55-9152-fd5f254aef77",
                             Name = "Player",
                             NormalizedName = "PLAYER"
                         });
@@ -158,28 +158,28 @@ namespace Race_management.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "f6e4a437-5d44-410e-8471-3e35112faa58",
-                            RoleId = "aa366280-f7a2-417f-bfa2-c19c2f054bff"
+                            UserId = "6ab41ce2-3ca3-4ed8-b934-f8021cb83192",
+                            RoleId = "1976493a-ba4e-4124-937a-e6ea3d7b3dc9"
                         },
                         new
                         {
-                            UserId = "2dc3e4e8-5b7e-446e-909e-dbcb6f6e35b7",
-                            RoleId = "14d4435e-96ac-4e25-9a4a-97656e9d0c96"
+                            UserId = "fd33dd2a-2455-4bc0-be05-c18011fbac49",
+                            RoleId = "eb31047f-de5b-452a-8ab6-cfd14dbb764e"
                         },
                         new
                         {
-                            UserId = "b9923e70-ef65-48de-a15b-9c62db600c31",
-                            RoleId = "14d4435e-96ac-4e25-9a4a-97656e9d0c96"
+                            UserId = "33398e3f-0ec9-4ecb-9b89-329c598d6a1a",
+                            RoleId = "eb31047f-de5b-452a-8ab6-cfd14dbb764e"
                         },
                         new
                         {
-                            UserId = "fef1d6fa-147a-4842-a95d-68efdeafef25",
-                            RoleId = "6805597b-6688-4c7f-98d1-46ef376a1500"
+                            UserId = "bff2e72e-d9f3-4ffd-b8a4-37522ec82753",
+                            RoleId = "80f28635-805f-4b55-9152-fd5f254aef77"
                         },
                         new
                         {
-                            UserId = "ea5a2610-86f1-4776-be5f-8bb96d8f74b7",
-                            RoleId = "6805597b-6688-4c7f-98d1-46ef376a1500"
+                            UserId = "fcb244d1-8028-4881-a49b-4dd593fb3466",
+                            RoleId = "80f28635-805f-4b55-9152-fd5f254aef77"
                         });
                 });
 
@@ -250,11 +250,11 @@ namespace Race_management.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("PlayerTeamTeamId")
-                        .HasColumnType("int");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TeamID")
+                        .HasColumnType("int");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
@@ -273,16 +273,16 @@ namespace Race_management.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("PlayerTeamTeamId");
+                    b.HasIndex("TeamID");
 
                     b.ToTable("AspNetUsers", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Id = "f6e4a437-5d44-410e-8471-3e35112faa58",
+                            Id = "6ab41ce2-3ca3-4ed8-b934-f8021cb83192",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0cc9eb85-f56d-4640-bcbb-08d9e8b1f1ef",
+                            ConcurrencyStamp = "17426546-656d-4a0f-8811-0aa8fa18762a",
                             Email = "ashkan110mir@gmail.com",
                             EmailConfirmed = true,
                             LastName = "Mirdamadi",
@@ -290,18 +290,18 @@ namespace Race_management.Migrations
                             Name = "Ashkan",
                             NormalizedEmail = "ASHKAN110MIR@GMAIL.COM",
                             NormalizedUserName = "ASHKANMIR",
-                            PasswordHash = "AQAAAAIAAYagAAAAEE60dtlpHXeP9rkP8OKur8MD0MXh9FaNEFGdA8Yvkc0CvcMWUagcV8KwgMmkftxsCw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGoyoSD1SkBdXZ0767n5UFce2M9eVy0fmndF2B5donKkZqIGsmeK7l+3syF8ZSL6tA==",
                             PhoneNumber = "09908752252",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "791502dc-04c4-4639-8441-ce039ebba0c3",
+                            SecurityStamp = "8dbae194-cbe3-42d1-8617-13436930d3ef",
                             TwoFactorEnabled = false,
                             UserName = "Ashkanmir"
                         },
                         new
                         {
-                            Id = "2dc3e4e8-5b7e-446e-909e-dbcb6f6e35b7",
+                            Id = "fd33dd2a-2455-4bc0-be05-c18011fbac49",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "79e79c83-9b86-4362-9545-cd6e6d784a3d",
+                            ConcurrencyStamp = "dcfd4c37-5e6d-4571-b1b7-3f1f42da2104",
                             Email = "aliMohammadi@yahoo.com",
                             EmailConfirmed = true,
                             LastName = "Mohammadi",
@@ -309,18 +309,18 @@ namespace Race_management.Migrations
                             Name = "Ali",
                             NormalizedEmail = "ALIMOHAMMADI@YAHOO.COM",
                             NormalizedUserName = "ALIZM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBCkcNp0M7HnXB4HjDQxv7vAFK4Iu3WEpltKgWUBHPudcitv0sGpx3wPyyal03MeSg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEC6A4ME3rhNiASsGvZ7NEAQpIRtMl4BFQxHXV3oe8Mq3AetfzJrQlvYtQ6g6oPfdgw==",
                             PhoneNumber = "09139875623",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "f6b2fb98-bf7e-41d7-bddd-268e8f44fddf",
+                            SecurityStamp = "1ae6defd-5d03-471b-8032-635328f18ae5",
                             TwoFactorEnabled = false,
                             UserName = "AliZM"
                         },
                         new
                         {
-                            Id = "b9923e70-ef65-48de-a15b-9c62db600c31",
+                            Id = "33398e3f-0ec9-4ecb-9b89-329c598d6a1a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3a4556a4-3dfa-4cdb-960b-d9c7ea412725",
+                            ConcurrencyStamp = "a6f26d62-1eec-44d2-9bd6-6426384b74a1",
                             Email = "AhmadiReza@outlook.com",
                             EmailConfirmed = true,
                             LastName = "Ahmadi",
@@ -328,18 +328,18 @@ namespace Race_management.Migrations
                             Name = "Reza",
                             NormalizedEmail = "AHMADIREZA@OUTLOOK.COM",
                             NormalizedUserName = "REZAAHMADI",
-                            PasswordHash = "AQAAAAIAAYagAAAAEODJ3bdlMuwCkUfoXTw8sAmB+UKdu9m0fjRFYz4IqyhsWG8I2SJOqrirTWI1idsIJg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKkTtLA3COmprUT9xq0MwB2LCz+RrwapJF+AGDP9samCdcIvjqoYVG5xYOYvudA/yA==",
                             PhoneNumber = "09139958123",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "87fb9dfe-14be-4bd8-970e-d179252a462b",
+                            SecurityStamp = "b3a3523e-d3d8-45a4-bda1-172be6fbd981",
                             TwoFactorEnabled = false,
                             UserName = "RezaAhmadi"
                         },
                         new
                         {
-                            Id = "fef1d6fa-147a-4842-a95d-68efdeafef25",
+                            Id = "bff2e72e-d9f3-4ffd-b8a4-37522ec82753",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d6b257e4-46cb-4557-9122-c337fb17ef5b",
+                            ConcurrencyStamp = "50e1156c-8f36-4903-b241-f4a930e5d509",
                             Email = "Akbari@outlook.com",
                             EmailConfirmed = true,
                             LastName = "Akbari",
@@ -347,18 +347,18 @@ namespace Race_management.Migrations
                             Name = "Fatemeh",
                             NormalizedEmail = "AKBARI@OUTLOOK.COM",
                             NormalizedUserName = "FATEMEHAK",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAqRajVBEnyqduKfSoEcqvaxdPyqjJX7sQEMKwBKnxtspx+c2Xok2YQG2/O8/W6+Og==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELBypGliQfrTC+UbPE9cBs6tAsDsevaD3GxpFLs44RwJ4jgDVbd3j2VTsI0lwgKayw==",
                             PhoneNumber = "09137456723",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "3b60b7d1-5e55-4bc8-9504-213dec653c6f",
+                            SecurityStamp = "8bb82703-7ff3-4e14-b9e2-e8759c4b4517",
                             TwoFactorEnabled = false,
                             UserName = "FatemehAk"
                         },
                         new
                         {
-                            Id = "ea5a2610-86f1-4776-be5f-8bb96d8f74b7",
+                            Id = "fcb244d1-8028-4881-a49b-4dd593fb3466",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d15deb8c-0e61-4f3c-a8f5-282d1fe45580",
+                            ConcurrencyStamp = "4de18573-f4f6-4fb1-8def-29fa28561590",
                             Email = "Rahimi@yahoo.com",
                             EmailConfirmed = true,
                             LastName = "Rahimi",
@@ -366,10 +366,10 @@ namespace Race_management.Migrations
                             Name = "Amir",
                             NormalizedEmail = "RAHIMI@YAHOO.COM",
                             NormalizedUserName = "RAHIMIA",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFeQZETXXfexAeLGNMRmlZi87KF0ZgwrX0yRqq9Poj3VgJT2xRkwPvrUyAieU9NAjA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKmXyu0C/E0b04fUd1iSolvK5fNmof/LLtecvhSJMRH7miL8N3guEiTilUtVFIkBbw==",
                             PhoneNumber = "09139874571",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "c3f8280e-9674-4046-b606-1ee892d8c7c9",
+                            SecurityStamp = "1d6825db-a296-4890-bf48-61d45683d8ac",
                             TwoFactorEnabled = false,
                             UserName = "RahimiA"
                         });
@@ -415,7 +415,7 @@ namespace Race_management.Migrations
                             Isactive = true,
                             ShowDate = new DateTime(2024, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ShowTitle = "اجرا 1",
-                            ShowplayerId = "fef1d6fa-147a-4842-a95d-68efdeafef25"
+                            ShowplayerId = "bff2e72e-d9f3-4ffd-b8a4-37522ec82753"
                         },
                         new
                         {
@@ -424,7 +424,7 @@ namespace Race_management.Migrations
                             Isactive = true,
                             ShowDate = new DateTime(2024, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ShowTitle = "اجرا 2",
-                            ShowplayerId = "ea5a2610-86f1-4776-be5f-8bb96d8f74b7"
+                            ShowplayerId = "fcb244d1-8028-4881-a49b-4dd593fb3466"
                         });
                 });
 
@@ -525,7 +525,7 @@ namespace Race_management.Migrations
                 {
                     b.HasOne("Race_management.Models.Team", "PlayerTeam")
                         .WithMany("Players")
-                        .HasForeignKey("PlayerTeamTeamId");
+                        .HasForeignKey("TeamID");
 
                     b.Navigation("PlayerTeam");
                 });

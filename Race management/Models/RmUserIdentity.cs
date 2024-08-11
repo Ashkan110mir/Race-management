@@ -10,6 +10,7 @@ namespace Race_management.Models
 
         //if user is player
         public Team? PlayerTeam { get; set; }
+        public int? TeamID { get; set; }
         public List<Show>? PlayerShows { get; set; }
         //if user is Coach 
 

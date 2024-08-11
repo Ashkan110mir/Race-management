@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Race_management.Migrations
 {
     /// <inheritdoc />
-    public partial class CREATEDB : Migration
+    public partial class createdb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -102,7 +102,7 @@ namespace Race_management.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PlayerTeamTeamId = table.Column<int>(type: "int", nullable: true),
+                    TeamID = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -214,21 +214,21 @@ namespace Race_management.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "14d4435e-96ac-4e25-9a4a-97656e9d0c96", null, "Coach", "COACH" },
-                    { "6805597b-6688-4c7f-98d1-46ef376a1500", null, "Player", "PLAYER" },
-                    { "aa366280-f7a2-417f-bfa2-c19c2f054bff", null, "Admin", "ADMIN" }
+                    { "1976493a-ba4e-4124-937a-e6ea3d7b3dc9", null, "Admin", "ADMIN" },
+                    { "80f28635-805f-4b55-9152-fd5f254aef77", null, "Player", "PLAYER" },
+                    { "eb31047f-de5b-452a-8ab6-cfd14dbb764e", null, "Coach", "COACH" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LastName", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PlayerTeamTeamId", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LastName", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TeamID", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "2dc3e4e8-5b7e-446e-909e-dbcb6f6e35b7", 0, "79e79c83-9b86-4362-9545-cd6e6d784a3d", "aliMohammadi@yahoo.com", true, "Mohammadi", false, null, "Ali", "ALIMOHAMMADI@YAHOO.COM", "ALIZM", "AQAAAAIAAYagAAAAEBCkcNp0M7HnXB4HjDQxv7vAFK4Iu3WEpltKgWUBHPudcitv0sGpx3wPyyal03MeSg==", "09139875623", true, null, "f6b2fb98-bf7e-41d7-bddd-268e8f44fddf", false, "AliZM" },
-                    { "b9923e70-ef65-48de-a15b-9c62db600c31", 0, "3a4556a4-3dfa-4cdb-960b-d9c7ea412725", "AhmadiReza@outlook.com", true, "Ahmadi", false, null, "Reza", "AHMADIREZA@OUTLOOK.COM", "REZAAHMADI", "AQAAAAIAAYagAAAAEODJ3bdlMuwCkUfoXTw8sAmB+UKdu9m0fjRFYz4IqyhsWG8I2SJOqrirTWI1idsIJg==", "09139958123", true, null, "87fb9dfe-14be-4bd8-970e-d179252a462b", false, "RezaAhmadi" },
-                    { "ea5a2610-86f1-4776-be5f-8bb96d8f74b7", 0, "d15deb8c-0e61-4f3c-a8f5-282d1fe45580", "Rahimi@yahoo.com", true, "Rahimi", false, null, "Amir", "RAHIMI@YAHOO.COM", "RAHIMIA", "AQAAAAIAAYagAAAAEFeQZETXXfexAeLGNMRmlZi87KF0ZgwrX0yRqq9Poj3VgJT2xRkwPvrUyAieU9NAjA==", "09139874571", true, null, "c3f8280e-9674-4046-b606-1ee892d8c7c9", false, "RahimiA" },
-                    { "f6e4a437-5d44-410e-8471-3e35112faa58", 0, "0cc9eb85-f56d-4640-bcbb-08d9e8b1f1ef", "ashkan110mir@gmail.com", true, "Mirdamadi", false, null, "Ashkan", "ASHKAN110MIR@GMAIL.COM", "ASHKANMIR", "AQAAAAIAAYagAAAAEE60dtlpHXeP9rkP8OKur8MD0MXh9FaNEFGdA8Yvkc0CvcMWUagcV8KwgMmkftxsCw==", "09908752252", true, null, "791502dc-04c4-4639-8441-ce039ebba0c3", false, "Ashkanmir" },
-                    { "fef1d6fa-147a-4842-a95d-68efdeafef25", 0, "d6b257e4-46cb-4557-9122-c337fb17ef5b", "Akbari@outlook.com", true, "Akbari", false, null, "Fatemeh", "AKBARI@OUTLOOK.COM", "FATEMEHAK", "AQAAAAIAAYagAAAAEAqRajVBEnyqduKfSoEcqvaxdPyqjJX7sQEMKwBKnxtspx+c2Xok2YQG2/O8/W6+Og==", "09137456723", true, null, "3b60b7d1-5e55-4bc8-9504-213dec653c6f", false, "FatemehAk" }
+                    { "33398e3f-0ec9-4ecb-9b89-329c598d6a1a", 0, "a6f26d62-1eec-44d2-9bd6-6426384b74a1", "AhmadiReza@outlook.com", true, "Ahmadi", false, null, "Reza", "AHMADIREZA@OUTLOOK.COM", "REZAAHMADI", "AQAAAAIAAYagAAAAEKkTtLA3COmprUT9xq0MwB2LCz+RrwapJF+AGDP9samCdcIvjqoYVG5xYOYvudA/yA==", "09139958123", true, "b3a3523e-d3d8-45a4-bda1-172be6fbd981", null, false, "RezaAhmadi" },
+                    { "6ab41ce2-3ca3-4ed8-b934-f8021cb83192", 0, "17426546-656d-4a0f-8811-0aa8fa18762a", "ashkan110mir@gmail.com", true, "Mirdamadi", false, null, "Ashkan", "ASHKAN110MIR@GMAIL.COM", "ASHKANMIR", "AQAAAAIAAYagAAAAEGoyoSD1SkBdXZ0767n5UFce2M9eVy0fmndF2B5donKkZqIGsmeK7l+3syF8ZSL6tA==", "09908752252", true, "8dbae194-cbe3-42d1-8617-13436930d3ef", null, false, "Ashkanmir" },
+                    { "bff2e72e-d9f3-4ffd-b8a4-37522ec82753", 0, "50e1156c-8f36-4903-b241-f4a930e5d509", "Akbari@outlook.com", true, "Akbari", false, null, "Fatemeh", "AKBARI@OUTLOOK.COM", "FATEMEHAK", "AQAAAAIAAYagAAAAELBypGliQfrTC+UbPE9cBs6tAsDsevaD3GxpFLs44RwJ4jgDVbd3j2VTsI0lwgKayw==", "09137456723", true, "8bb82703-7ff3-4e14-b9e2-e8759c4b4517", null, false, "FatemehAk" },
+                    { "fcb244d1-8028-4881-a49b-4dd593fb3466", 0, "4de18573-f4f6-4fb1-8def-29fa28561590", "Rahimi@yahoo.com", true, "Rahimi", false, null, "Amir", "RAHIMI@YAHOO.COM", "RAHIMIA", "AQAAAAIAAYagAAAAEKmXyu0C/E0b04fUd1iSolvK5fNmof/LLtecvhSJMRH7miL8N3guEiTilUtVFIkBbw==", "09139874571", true, "1d6825db-a296-4890-bf48-61d45683d8ac", null, false, "RahimiA" },
+                    { "fd33dd2a-2455-4bc0-be05-c18011fbac49", 0, "dcfd4c37-5e6d-4571-b1b7-3f1f42da2104", "aliMohammadi@yahoo.com", true, "Mohammadi", false, null, "Ali", "ALIMOHAMMADI@YAHOO.COM", "ALIZM", "AQAAAAIAAYagAAAAEC6A4ME3rhNiASsGvZ7NEAQpIRtMl4BFQxHXV3oe8Mq3AetfzJrQlvYtQ6g6oPfdgw==", "09139875623", true, "1ae6defd-5d03-471b-8032-635328f18ae5", null, false, "AliZM" }
                 });
 
             migrationBuilder.InsertData(
@@ -236,11 +236,11 @@ namespace Race_management.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "14d4435e-96ac-4e25-9a4a-97656e9d0c96", "2dc3e4e8-5b7e-446e-909e-dbcb6f6e35b7" },
-                    { "14d4435e-96ac-4e25-9a4a-97656e9d0c96", "b9923e70-ef65-48de-a15b-9c62db600c31" },
-                    { "6805597b-6688-4c7f-98d1-46ef376a1500", "ea5a2610-86f1-4776-be5f-8bb96d8f74b7" },
-                    { "aa366280-f7a2-417f-bfa2-c19c2f054bff", "f6e4a437-5d44-410e-8471-3e35112faa58" },
-                    { "6805597b-6688-4c7f-98d1-46ef376a1500", "fef1d6fa-147a-4842-a95d-68efdeafef25" }
+                    { "eb31047f-de5b-452a-8ab6-cfd14dbb764e", "33398e3f-0ec9-4ecb-9b89-329c598d6a1a" },
+                    { "1976493a-ba4e-4124-937a-e6ea3d7b3dc9", "6ab41ce2-3ca3-4ed8-b934-f8021cb83192" },
+                    { "80f28635-805f-4b55-9152-fd5f254aef77", "bff2e72e-d9f3-4ffd-b8a4-37522ec82753" },
+                    { "80f28635-805f-4b55-9152-fd5f254aef77", "fcb244d1-8028-4881-a49b-4dd593fb3466" },
+                    { "eb31047f-de5b-452a-8ab6-cfd14dbb764e", "fd33dd2a-2455-4bc0-be05-c18011fbac49" }
                 });
 
             migrationBuilder.InsertData(
@@ -248,8 +248,8 @@ namespace Race_management.Migrations
                 columns: new[] { "ShowId", "AverageScore", "Isactive", "ShowDate", "ShowTitle", "ShowplayerId" },
                 values: new object[,]
                 {
-                    { 1, -1, true, new DateTime(2024, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "اجرا 1", "fef1d6fa-147a-4842-a95d-68efdeafef25" },
-                    { 2, -1, true, new DateTime(2024, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "اجرا 2", "ea5a2610-86f1-4776-be5f-8bb96d8f74b7" }
+                    { 1, -1, true, new DateTime(2024, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "اجرا 1", "bff2e72e-d9f3-4ffd-b8a4-37522ec82753" },
+                    { 2, -1, true, new DateTime(2024, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "اجرا 2", "fcb244d1-8028-4881-a49b-4dd593fb3466" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -285,9 +285,9 @@ namespace Race_management.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_PlayerTeamTeamId",
+                name: "IX_AspNetUsers_TeamID",
                 table: "AspNetUsers",
-                column: "PlayerTeamTeamId");
+                column: "TeamID");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
@@ -336,9 +336,9 @@ namespace Race_management.Migrations
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_AspNetUsers_Teams_PlayerTeamTeamId",
+                name: "FK_AspNetUsers_Teams_TeamID",
                 table: "AspNetUsers",
-                column: "PlayerTeamTeamId",
+                column: "TeamID",
                 principalTable: "Teams",
                 principalColumn: "TeamId");
         }

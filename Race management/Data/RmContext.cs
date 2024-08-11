@@ -41,7 +41,7 @@ namespace Race_management.Data
                 e.Property(e => e.TeamName).IsRequired().HasMaxLength(70);
                 //relation
 
-                e.HasMany(e => e.Players).WithOne(e => e.PlayerTeam);
+                e.HasMany(e => e.Players).WithOne(e => e.PlayerTeam).HasForeignKey(e => e.TeamID);
                 e.HasOne(e => e.Coach).WithMany(e => e.CoachTeams).HasForeignKey(e=>e.CoachId);
             });
             

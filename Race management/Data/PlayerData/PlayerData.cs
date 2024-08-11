@@ -85,8 +85,8 @@ namespace Race_management.Data.PlayerData
 
         public async Task<IList<RmUserIdentity>> GetAllPlayerWithoutTeam()
         {
-            var player = await _userManager.GetUsersInRoleAsync("Player");
-            player = player.Where(e => e.PlayerTeam == null).ToList();
+            var player =await _userManager.GetUsersInRoleAsync("Player");
+            player = player.Where(e => e.TeamID == null).ToList();
             return player;
 
         }
