@@ -1,0 +1,93 @@
+﻿@model ManagespecificTeamViewModel
+@{
+    ViewData["Title"] = "ManagespecificTeam";
+}
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 30px;
+    }
+
+        table td, th {
+            padding: 30px;
+        }
+</style>
+
+<div>@ViewBag.massage</div>
+
+<h1>افزودن عضو جدید</h1>
+@if (Model.NewPlayers != null && Model.NewPlayers.Count > 0)
+{
+
+    <table>
+        <tr>
+            <th>نام شرکت کننده</th>
+            <th>نام خانوادگی شرکت کننده</th>
+            <th>ایمیل شرکت کننده</th>
+            <th>شماره موبایل شرکت کننده</th>
+            <th>عملیات</th>
+        </tr>
+
+        @foreach (var selectnewplayer in Model.NewPlayers)
+        {
+            <tr>
+                <td>@selectnewplayer.Name</td>
+                <td>@selectnewplayer.LastName</td>
+                <td>@selectnewplayer.Email</td>
+                <td>@selectnewplayer.PhoneNumber</td>
+                <td>
+                    <a asp-action="AddPlayerToTeam" asp-controller="CoachDashboard" asp-route-teamid="@Model.Team.TeamId" asp-route-playerid="@selectnewplayer.Id">عضو کردن</a>
+                </td>
+            </tr>
+        }
+    
+    </table>
+}
+else
+{
+    <div>هیچ شرکت کننده بدون تیمی وجود ندارد</div>
+}
+
+<h1>شرکت کننده های تیم</h1>
+@if (Model.ExistPlayer != null && Model.ExistPlayer.Count > 0)
+{
+    <table>
+        <tr>
+            <th>نام شرکت کننده</th>
+            <th>نام خانوادگی شرکت کننده</th>
+            <th>ایمیل شرکت کننده</th>
+            <th>شماره موبایل شرکت کننده</th>
+            <th>عملیات</th>
+        </tr>
+        @foreach (var existplayer in Model.ExistPlayer)
+        {
+            <tr>
+                <td>@existplayer.Name</td>
+                <td>@existplayer.LastName</td>
+                <td>@existplayer.Email</td>
+                <td>@existplayer.PhoneNumber</td>
+                <td>
+                    <a asp-action="deleteFromTeam" asp-controller="CoachDashboard" asp-route-teamid="@Model.Team.TeamId" asp-route-playerid="@existplayer.Id">حذف از تیم</a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div>هیچ شرکت کننده در این تیم وجود ندارد</div>
+}
+<h1>اطلاعات تیم</h1>
+<table>
+    <tr>
+        <th>نام تیم</th>
+        <th>مربی</th>
+        <th>تعدا شرکت کننده</th>
+    </tr>
+    <tr>
+        <td>@Model.Team.TeamName</td>
+        <td>@ViewBag.CoachName</td>
+        <td>@ViewBag.PlayerCount</td>
+    </tr>
+</table>
+

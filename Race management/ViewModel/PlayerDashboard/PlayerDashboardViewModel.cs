@@ -12,6 +12,8 @@ namespace Race_management.ViewModel.PlayerDashboard
 
         public string? PhoneNumber { get; set; }
 
+        public string? TeamName { get; set; }
+
 
         public List<PlayerShowForDashboardViewModel>? PlayerShow {  get; set; }
 

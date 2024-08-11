@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Race_management.Data.CoachData;
+using Race_management.Data.CoachTeamData;
 using Race_management.Data.ICoachShowData;
+using Race_management.Data.PlayerData;
 using Race_management.Data.PlayerShowData;
 using Race_management.Models;
 using Race_management.Utility;
@@ -19,12 +21,16 @@ namespace Race_management.Controllers
         private IPlayerShowData _playershowdata;
         private ICoachShowData _coachshowdata;
         private ICoachData _coachdata;
-        public CoachDashboard(UserManager<RmUserIdentity> usermanager, ICoachShowData coachShowData,IPlayerShowData playershowData,ICoachData coachdata)
+        private ICoachTeamData _coachteamdata;
+        private IPlayerData _playerdata;
+        public CoachDashboard(UserManager<RmUserIdentity> usermanager, ICoachShowData coachShowData, IPlayerShowData playershowData, ICoachData coachdata, ICoachTeamData coachteamdata, IPlayerData playerData)
         {
             _usermanager = usermanager;
             _coachshowdata = coachShowData;
             _playershowdata = playershowData;
             _coachdata = coachdata;
+            _coachteamdata = coachteamdata;
+            _playerdata = playerData;
         }
         public List<RateToShowViewModel> RefreshShow()
         {
@@ -91,20 +97,20 @@ namespace Race_management.Controllers
 
         public IActionResult EditCoach()
         {
-            var vm=new EditCoachPersonalViewModel();
-            var coach=_usermanager.Users.Where(e=>e.Id==User.FindFirstValue(ClaimTypes.NameIdentifier)).First();
+            var vm = new EditCoachPersonalViewModel();
+            var coach = _usermanager.Users.Where(e => e.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)).First();
             vm.PhoneNumber = coach.PhoneNumber;
             vm.Name = coach.Name;
             vm.EmailAddress = coach.Email;
-            vm.LastName= coach.LastName;
+            vm.LastName = coach.LastName;
             return View(vm);
         }
         [HttpPost]
         public IActionResult EditCoach(EditCoachPersonalViewModel newcoach)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                var userid = _usermanager.Users.Where(e => e.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)).Select(e=>e.Id).First();
+                var userid = _usermanager.Users.Where(e => e.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)).Select(e => e.Id).First();
                 var user = new RmUserIdentity()
                 {
                     Name = newcoach.Name,
@@ -113,7 +119,7 @@ namespace Race_management.Controllers
                     PhoneNumber = newcoach.PhoneNumber,
                 };
                 bool editstatus = _coachdata.EditCoach(userid, user);
-                if(editstatus)
+                if (editstatus)
                 {
                     return RedirectToAction(nameof(Coachdashboard));
                 }
@@ -126,6 +132,71 @@ namespace Race_management.Controllers
             else
             {
                 return View(newcoach);
+            }
+        }
+
+        public IActionResult ManageTeam()
+        {
+            return View(_coachteamdata.GetTeamsByCoachId(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+        }
+
+        public async Task <IActionResult> ManagespecificTeam(int teamid)
+        {
+            var vm = new ManagespecificTeamViewModel();
+            vm.Team = _coachteamdata.GetTeamById(teamid);
+            var existUser = _playerdata.GetPlayerByTeam(teamid);
+            var allplayer =await _playerdata.GetAllPlayerWithoutTeam();
+            List<RmUserIdentity> rm = new List<RmUserIdentity>();
+            vm.ExistPlayer = existUser;
+            vm.NewPlayers = (List<RmUserIdentity>)allplayer;
+
+            var coach = _usermanager.Users.Where(e => e.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)).Select(e => e.Name + " " + e.LastName).FirstOrDefault();
+            ViewBag.Coachname = coach;
+            ViewBag.PlayerCount=existUser.Count();
+
+            return View(vm);
+        }
+
+        public IActionResult AddPlayerToTeam(int teamid,string playerid)
+        {
+            if(teamid!=0 && playerid!=null)
+            {
+               bool addstatus= _playerdata.AddPlayerToTeam(playerid, teamid);
+                if(addstatus)
+                {
+                   
+                    return RedirectToAction(nameof(ManagespecificTeam), new { teamid = teamid });
+                }
+                else
+                {
+                    ViewBag.massage = "خطایی در افزودن رخ داد";
+                    return View();
+                }
+                
+
+            }
+            return NotFound();
+        }
+
+        public IActionResult deleteFromTeam(int teamid,string Playerid)
+        {
+            if(teamid!=0 && Playerid!=null)
+            {
+               bool deletestatus= _playerdata.DeletePlayerToTeam(Playerid, teamid);
+                if(deletestatus)
+                {
+                    return RedirectToAction(nameof(ManagespecificTeam),new {teamid=teamid});
+
+                }
+                else
+                {
+                    ViewBag.massage = "خطایی در حذف رخ داد";
+                    return View();
+                }
+            }
+            else
+            {
+                return NotFound();
             }
         }
 

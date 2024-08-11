@@ -7,6 +7,7 @@ using Race_management.Areas.Admin.Data.AdminTeamData;
 using Race_management.Areas.Admin.Data.IAdminCoachData;
 using Race_management.Data;
 using Race_management.Data.CoachData;
+using Race_management.Data.CoachTeamData;
 using Race_management.Data.ICoachShowData;
 using Race_management.Data.IPlayerCoachData;
 using Race_management.Data.PlayerData;
@@ -62,6 +63,7 @@ builder.Services.AddScoped<IAdminCoachData, AdminCoachData>();
 
 builder.Services.AddScoped<ICoachShowData,CoachShowData>();
 builder.Services.AddScoped<ICoachData,CoachData>();
+builder.Services.AddScoped<ICoachTeamData,CoachTeamData>();
 
 builder.Services.AddScoped<IPlayerCoachData,PlayerCoachData>();
 builder.Services.AddScoped<IPlayerShowData, PlayerShowData>();

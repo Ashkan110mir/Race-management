@@ -42,6 +42,7 @@ namespace Race_management.Controllers
             vm.LastName = user.LastName;
             vm.PhoneNumber = user.PhoneNumber;
             vm.Email = user.Email;
+            vm.TeamName = _playerdata.PlayerTeamNameById(user.Id);
             var shows = _playershowdata.GetShowbyUserId(user.Id);
 
             if (shows != null)
@@ -55,7 +56,7 @@ namespace Race_management.Controllers
                         ShowDate = DateCalculator.DateToShamshi(show.ShowDate),
                         CoachNames = _playercoachdata.GetCoachNameByShow(show.ShowId),
                         AverageScore = show.AverageScore,
-
+                        
                     });
                 }
                 vm.PlayerShow = playershows;
@@ -112,6 +113,6 @@ namespace Race_management.Controllers
                 return View(vm);
             }
         }
-        
+
     }
 }

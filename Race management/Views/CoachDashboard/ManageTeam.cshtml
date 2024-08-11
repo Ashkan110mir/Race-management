@@ -1,0 +1,25 @@
+﻿@model List<Team>
+@{
+    ViewData["Title"] = "ManageTeam";
+}
+
+<h1>ManageTeam</h1>
+
+@{
+    if (Model != null && Model.Count > 0)
+    {
+        @foreach (var team in Model)
+        {
+            <div>
+                <p>@team.TeamName  &nbsp <a asp-action="ManagespecificTeam" asp-controller="CoachDashboard" asp-route-teamid="@team.TeamId">مدیریت</a></p>
+                
+            </div>
+
+        }
+    }
+    else
+    {
+        <div>شما مربی تیمی نیستید</div>
+    }
+}
+
