@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Race_management.Areas.Admin.Data.AdminPlayerData;
 using Race_management.Areas.Admin.Data.AdminShowData;
@@ -18,11 +19,13 @@ namespace Race_management.Areas.Admin.Controllers
         private IAdminShowData _adminShowData;
         private UserManager<RmUserIdentity> _usermanager;
         private IAdminPlayerData _playerdata;
-        public ShowManagement(IAdminShowData adminShowData, UserManager<RmUserIdentity> userManager, IAdminPlayerData adminPlayer)
+        private Race_management.Utility.Email_Sender.IEmailSender _emailsender;
+        public ShowManagement(IAdminShowData adminShowData, UserManager<RmUserIdentity> userManager, IAdminPlayerData adminPlayer, Race_management.Utility.Email_Sender.IEmailSender emailSender)
         {
             _adminShowData = adminShowData;
             _usermanager = userManager;
             _playerdata = adminPlayer;
+            _emailsender = emailSender;
         }
         private async Task<List<Player_name_id_viewmodel>> GetPlayer()
         {
@@ -106,6 +109,13 @@ namespace Race_management.Areas.Admin.Controllers
                 bool addshowstatus = _adminShowData.AddShow(show);
                 if (addshowstatus)
                 {
+                    var allcoach = await _usermanager.GetUsersInRoleAsync("Coach");
+
+                    var text = "<!DOCTYPE html>\r\n<html>\r\n<body>\r\n    <header style=\"width: 100%; background-color: orange; color:white;text-align: center; font-size: 200%;\">مسابقات\r\n    </header>\r\n    <div style=\"text-align: center;\">\r\n        <p>خوش آمدید لطفا از طریق لینک زیر ایمیل خود را تایید کنید.</p>\r\n        <p>اجرای جدیدی اضافه شد لطفا در اسرع وقت نسبت به درج نمره اقدام نمایید با تشکر.</p>\r\n    </div>\r\n</body>\r\n</html>";
+                    foreach (var coach in allcoach)
+                    {
+                       await _emailsender.Send_Email(coach.Email,text,"اجرای جدید",true);
+                    }
                     return RedirectToAction(nameof(ManageShow));
                 }
                 else
@@ -205,7 +215,7 @@ namespace Race_management.Areas.Admin.Controllers
                 Editshow.Players = await GetPlayer();
                 return View("AddShow", Editshow);
             }
-           
+
         }
 
 
