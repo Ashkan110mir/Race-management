@@ -8,6 +8,7 @@ namespace Race_management.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Admin")]
     [Area("Admin")]
+    [Route("/Admin/[Controller]/[Action]")]
     public class AdminDashboard : Controller
     {
         private UserManager<RmUserIdentity> _usermanager;
