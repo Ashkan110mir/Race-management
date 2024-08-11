@@ -9,6 +9,7 @@ using Race_management.Data;
 using Race_management.Data.CoachData;
 using Race_management.Data.ICoachShowData;
 using Race_management.Data.IPlayerCoachData;
+using Race_management.Data.PlayerData;
 using Race_management.Data.PlayerShowData;
 using Race_management.Models;
 using Race_management.Utility.Email_Sender;
@@ -64,7 +65,7 @@ builder.Services.AddScoped<ICoachData,CoachData>();
 
 builder.Services.AddScoped<IPlayerCoachData,PlayerCoachData>();
 builder.Services.AddScoped<IPlayerShowData, PlayerShowData>();
-
+builder.Services.AddScoped<IPlayerData, PlayerData>();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<IGoogleRecatcha, GoogleRecatcha>();
