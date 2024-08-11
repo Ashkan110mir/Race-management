@@ -10,18 +10,26 @@ namespace Race_management.Data.PlayerData
         {
             _db = db;
         }
-        public bool EditPlayer(string userid,RmUserIdentity newplayer)
+        public bool EditPlayer(string userid, RmUserIdentity newplayer)
         {
-            var Preuser=_db.Users.Where(e=>e.Id== userid).FirstOrDefault();
-            if(Preuser != null)
+            try
             {
-                Preuser.LastName = newplayer.LastName;
-                Preuser.Name= newplayer.Name;
-                Preuser.PhoneNumber = newplayer.PhoneNumber;
-                _db.SaveChanges();
-                return true;
+                var Preuser = _db.Users.Where(e => e.Id == userid).FirstOrDefault();
+                if (Preuser != null)
+                {
+                    Preuser.LastName = newplayer.LastName;
+                    Preuser.Name = newplayer.Name;
+                    Preuser.PhoneNumber = newplayer.PhoneNumber;
+                    Preuser.Email = newplayer.Email;
+                    _db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch
             {
                 return false;
             }

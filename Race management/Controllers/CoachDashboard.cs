@@ -88,6 +88,47 @@ namespace Race_management.Controllers
             }
             return View(vm);
         }
+
+        public IActionResult EditCoach()
+        {
+            var vm=new EditCoachPersonalViewModel();
+            var coach=_usermanager.Users.Where(e=>e.Id==User.FindFirstValue(ClaimTypes.NameIdentifier)).First();
+            vm.PhoneNumber = coach.PhoneNumber;
+            vm.Name = coach.Name;
+            vm.EmailAddress = coach.Email;
+            vm.LastName= coach.LastName;
+            return View(vm);
+        }
+        [HttpPost]
+        public IActionResult EditCoach(EditCoachPersonalViewModel newcoach)
+        {
+            if(ModelState.IsValid)
+            {
+                var userid = _usermanager.Users.Where(e => e.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)).Select(e=>e.Id).First();
+                var user = new RmUserIdentity()
+                {
+                    Name = newcoach.Name,
+                    LastName = newcoach.LastName,
+                    Email = newcoach.EmailAddress,
+                    PhoneNumber = newcoach.PhoneNumber,
+                };
+                bool editstatus = _coachdata.EditCoach(userid, user);
+                if(editstatus)
+                {
+                    return RedirectToAction(nameof(Coachdashboard));
+                }
+                else
+                {
+                    ModelState.AddModelError("", "خطایی در ویرایش رخ داد");
+                    return View(newcoach);
+                }
+            }
+            else
+            {
+                return View(newcoach);
+            }
+        }
+
     }
 
 }
