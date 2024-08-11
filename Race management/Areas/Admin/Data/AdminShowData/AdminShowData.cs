@@ -1,4 +1,5 @@
-﻿using Race_management.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Race_management.Data;
 using Race_management.Models;
 
 namespace Race_management.Areas.Admin.Data.AdminShowData
@@ -71,9 +72,9 @@ namespace Race_management.Areas.Admin.Data.AdminShowData
                     var preshow = _db.Shows.Where(e => e.ShowId == newshow.ShowId).FirstOrDefault();
                     if (preshow != null)
                     {
-                        preshow.ShowTitle=newshow.ShowTitle;
+                        preshow.ShowTitle = newshow.ShowTitle;
                         preshow.ShowDate = newshow.ShowDate;
-                        preshow.ShowplayerId= newshow.ShowplayerId;
+                        preshow.ShowplayerId = newshow.ShowplayerId;
                         _db.SaveChanges();
                         return true;
                     }
@@ -92,7 +93,55 @@ namespace Race_management.Areas.Admin.Data.AdminShowData
 
         public List<Show> GetSHowByplayer(string playerid)
         {
-            return _db.Shows.Where(e=>e.ShowplayerId==playerid && e.Isactive==true).ToList();
+            return _db.Shows.Where(e => e.ShowplayerId == playerid && e.Isactive == true).ToList();
+        }
+
+        public List<Show> SearchShow(int? id, string? title, DateTime? datefrom, DateTime? dateto,string? Player, string orderby)
+        {
+            IQueryable<Show> Shows = _db.Shows;
+            if (id!=0)
+            {
+                Shows = Shows.Where(e => e.ShowId == id);
+            }
+            if (title != null)
+            {
+                Shows = Shows.Where(e => e.ShowTitle.Contains(title));
+            }
+            if (datefrom != null)
+            {
+                Shows = Shows.Where(e => e.ShowDate >= datefrom);
+            }
+            if (dateto != null)
+            {
+                Shows = Shows.Where(e => e.ShowDate <= dateto);
+            }
+            if(Player!=null)
+            {
+                Shows = Shows.Where(e => e.ShowPlayer.Name.Contains(Player) || e.ShowPlayer.LastName.Contains(Player) || (e.ShowPlayer.Name+" "+e.ShowPlayer.LastName).Contains(Player));
+            }
+            switch (orderby)
+            {
+                case "OrderByDate":
+                    {
+                        Shows = Shows.OrderBy(e => e.ShowDate);
+                        break;
+                    }
+                case "OrderByName":
+                    {
+                        Shows = Shows.OrderBy(e => e.ShowTitle);
+                        break;
+                    }
+                case "OrderById":
+                    {
+                        Shows = Shows.OrderBy(e => e.ShowId);
+                        break;
+                    }
+            }
+            //return Shows.ToList();
+            
+
+            return Shows.Include(e => e.ShowPlayer).ToList();
+
         }
     }
 }

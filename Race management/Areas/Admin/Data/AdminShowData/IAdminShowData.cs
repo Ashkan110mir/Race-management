@@ -12,5 +12,9 @@ namespace Race_management.Areas.Admin.Data.AdminShowData
 
         public bool EditShow(Show newshow);
         public List<Show> GetSHowByplayer(string playerid);
+
+        public List<Show> SearchShow(int? id, string? title, DateTime? datefrom, DateTime? dateto, string? Player, string orderby);
+
+
     }
 }

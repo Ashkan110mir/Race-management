@@ -4,12 +4,39 @@
 }
 
 <h1>ManageShow</h1>
+<div>@ViewBag.massage</div>
 <div>
     <a asp-action="AddShow" asp-controller="ShowManagement">
         ایجاد اجرا جدید
     </a>
 
 </div>
+<br />
+<br />
+<hr />
+<form asp-action="SearchShow" asp-controller="ShowManagement" asp-route-id="Id" asp-route-title="Title" asp-route-DateFrom="datefrom" asp-route-DateTo="dateto" asp-route-Player="Player" asp-route-Orderby="orderby">
+    <input type="text" name="Id" id="id" placeholder="کد" />
+
+    <input type="text" name="Title" id="title" placeholder="عنوان" />
+
+    <input type="text" name="datefrom" id="datefrom" placeholder="از تاریخ:xxxx/xx/xx" />
+
+    <input type="text" name="dateto" id="dateto" placeholder="تا تاریخ:xxxx/xx/xx" />
+
+
+    <input type="text" name="Player" id="player" placeholder="بازیکن" />
+
+    <select name="orderby" id="orderby">
+        <option value="OrderByDate"> مرتب سازی بر اساس تاریخ</option>
+        <option value="OrderByName"> مرتب سازی بر اساس نام</option>
+        <option value="OrderById" selected>مرتب سازی بر اساس کد</option> 
+    </select>
+
+    <input type="submit" value="جست و جو" />
+
+</form>
+
+<a asp-action="ManageShow" asp-controller="ShowManagement">حذف فیلتر</a>
 @{
     <div>@ViewBag.massage</div>
     if (Model.Count == 0 || Model.Count == null)

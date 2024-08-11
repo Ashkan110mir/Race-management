@@ -43,6 +43,7 @@ namespace Race_management.Areas.Admin.Controllers
             return Players;
         }
 
+
         public async Task<IActionResult> ManageShow()
         {
             List<ShowManagementViewModel> vm = new List<ShowManagementViewModel>();
@@ -114,7 +115,7 @@ namespace Race_management.Areas.Admin.Controllers
                     var text = "<!DOCTYPE html>\r\n<html>\r\n<body>\r\n    <header style=\"width: 100%; background-color: orange; color:white;text-align: center; font-size: 200%;\">مسابقات\r\n    </header>\r\n    <div style=\"text-align: center;\">\r\n        <p>خوش آمدید لطفا از طریق لینک زیر ایمیل خود را تایید کنید.</p>\r\n        <p>اجرای جدیدی اضافه شد لطفا در اسرع وقت نسبت به درج نمره اقدام نمایید با تشکر.</p>\r\n    </div>\r\n</body>\r\n</html>";
                     foreach (var coach in allcoach)
                     {
-                       await _emailsender.Send_Email(coach.Email,text,"اجرای جدید",true);
+                        await _emailsender.Send_Email(coach.Email, text, "اجرای جدید", true);
                     }
                     return RedirectToAction(nameof(ManageShow));
                 }
@@ -216,6 +217,70 @@ namespace Race_management.Areas.Admin.Controllers
                 return View("AddShow", Editshow);
             }
 
+        }
+
+        public async Task<IActionResult> SearchShow(string id, string title, string DateFrom, string DateTo, string Player, string Orderby)
+        {
+            List<ShowManagementViewModel> vm = new List<ShowManagementViewModel>();
+            DateTime? datef = new DateTime?();
+            DateTime? dateto = new DateTime?();
+
+            try
+            {
+                if (DateFrom != null)
+                {
+                    var date = DateTime.Parse(DateFrom);
+                    datef = DateCalculator.Tomiladi(date);
+                }
+                if (DateTo != null)
+                {
+
+                    var date = DateTime.Parse(DateTo);
+                    dateto = DateCalculator.Tomiladi(date);
+                }
+            }
+            catch
+            {
+                ViewBag.massage = "فرمت تاریخ درست نیست";
+
+                var shows = _adminShowData.GetAllShow();
+                foreach (var show in shows)
+                {
+                    var user = await _usermanager.FindByIdAsync(show.ShowplayerId);
+                    Player_name_id_viewmodel name_id = new Player_name_id_viewmodel()
+                    {
+                        id = user.Id,
+                        name = user.Name + " " + user.LastName
+                    };
+                    vm.Add(new ShowManagementViewModel()
+                    {
+                        title = show.ShowTitle,
+                        Id = show.ShowId,
+                        Score = show.AverageScore,
+                        PlayerNames = name_id,
+                        date = DateCalculator.DateToShamshi(show.ShowDate)
+                    });
+
+                }
+                return View("ManageShow", vm);
+            }
+            var searchItem = _adminShowData.SearchShow(Convert.ToInt32(id), title, datef, dateto, Player, Orderby);
+            foreach (var show in searchItem)
+            {
+                vm.Add(new ShowManagementViewModel()
+                {
+                    title = show.ShowTitle,
+                    Score = show.AverageScore,
+                    date = DateCalculator.DateToShamshi(show.ShowDate),
+                    Id = show.ShowId,
+                    PlayerNames = new Player_name_id_viewmodel()
+                    {
+                        id = show.ShowplayerId,
+                        name = show.ShowPlayer.Name + " " + show.ShowPlayer.LastName,
+                    }
+                });
+            }
+            return View("ManageShow", vm);
         }
 
 
