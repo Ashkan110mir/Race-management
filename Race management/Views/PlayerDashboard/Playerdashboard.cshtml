@@ -59,12 +59,19 @@
                     <tr style="width:100%;">
                         <td>@show.ShowTitle</td>
                         <td>@show.ShowDate</td>
-                        <td>
-                            @foreach (var coachname in show.CoachNames)
-                            {
-                                <div>@coachname</div>
-                            }
-                        </td>
+                        @if (show.CoachNames != null && show.CoachNames.Count > 0)
+                        {
+                            <td>
+                                @foreach (var coachname in show.CoachNames)
+                                {
+                                    <div>@coachname</div>
+                                }
+                            </td>
+                        }
+                        else
+                        {
+                            <td>هنوز مربی به اجرای شما رای نداده</td>
+                        }
                         <td>
                             @if (show.AverageScore != -1)
                             {
