@@ -1,0 +1,57 @@
+﻿@model List<AllShowViewModel>
+@{
+    ViewData["Title"] = "AllShow";
+}
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 30px;
+    }
+
+        table td, th {
+            padding: 30px;
+        }
+</style>
+<h1>همه اجراها</h1>
+
+<table>
+    <tr>
+        <th>کد اجرا</th>
+        <th>عنوان اجرا</th>
+        <th>تاریخ اجرا</th>
+        <th>اجرا کننده</th>
+        <th>میانگین امتیاز</th>
+        <th>داور های رای دهنده</th>
+    </tr>
+    @foreach (var show in Model)
+    {
+        <tr>
+            <td>@show.Shows.ShowId</td>
+            <td>@show.Shows.ShowTitle</td>
+            <td>@DateCalculator.DateToShamshi(@show.Shows.ShowDate)</td>
+            <td>@show.Shows.ShowPlayer.Name &nbsp @show.Shows.ShowPlayer.LastName</td>
+            @if (show.Shows.AverageScore == -1)
+            {
+                <td>هنوز نمره ایی ثبت نشده</td>
+            }
+            else
+            {
+                <td>@show.Shows.AverageScore</td>
+            }
+
+            @if (show.Coach != null && show.Coach.Count > 0)
+            {
+                <td>
+                    @foreach (var coach in show.Coach)
+                    {
+                        <div>@coach</div>
+                    }
+                </td>
+            }
+            else
+            {
+                <td>هنوز داوری به این اجرا رای نداده</td>
+            }
+        </tr>
+    }
+</table>

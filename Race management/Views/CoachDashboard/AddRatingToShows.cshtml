@@ -5,41 +5,52 @@
 
 <h1>AddRatingToShows</h1>
 <div>@ViewBag.massage</div>
-<table>
-    <tr>
-        <th>کد اجرا</th>
-        <th>عنوان اجرا</th>
-        <th>شرکت کننده</th>
-        <th>میانگین امتیاز</th>
-        <th>نمره دهی</th>
-    </tr>
-    @foreach (var Show in Model)
-    {
+@if (Model != null && Model.Count > 0)
+{
+    <table>
         <tr>
-            <td>@Show.show.ShowId</td>
-            <td>@Show.show.ShowTitle</td>
-            <td>@Show.show.ShowPlayer.Name &nbsp @Show.show.ShowPlayer.LastName</td>
-            <td>
-                @if (Show.show.AverageScore != -1)
-                {
-                    @Show.show.AverageScore
-                }
-                else
-                {
-                    <div>نمره ایی ثبت نشده</div>
-                }
-
-
-            </td>
-            <td>
-                <form method="post" asp-action="AddShowRate" asp-controller="CoachDashboard" asp-route-score="Score" asp-route-showid="@Show.show.ShowId">
-
-                    <input asp-for="@Show.CoachScore" name="Score" />
-                    <input type="submit" value="ثبت نمره" />
-                </form>
-            </td>
-
+            <th>کد اجرا</th>
+            <th>عنوان اجرا</th>
+            <th>شرکت کننده</th>
+            <th>میانگین امتیاز</th>
+            <th>نمره دهی</th>
         </tr>
-    }
-</table>
 
+        @foreach (var Show in Model)
+        {
+            <tr>
+                <td>@Show.show.ShowId</td>
+                <td>@Show.show.ShowTitle</td>
+                <td>@Show.show.ShowPlayer.Name &nbsp @Show.show.ShowPlayer.LastName</td>
+                <td>
+                    @if (Show.show.AverageScore != -1)
+                    {
+                        @Show.show.AverageScore
+                    }
+                    else
+                    {
+                        <div>نمره ایی ثبت نشده</div>
+                    }
+
+
+                </td>
+                <td>
+                    <form method="post" asp-action="AddShowRate" asp-controller="CoachDashboard" asp-route-score="Score" asp-route-showid="@Show.show.ShowId">
+
+                        <input asp-for="@Show.CoachScore" name="Score" />
+                        <input type="submit" value="ثبت نمره" />
+                    </form>
+                </td>
+
+            </tr>
+        }
+
+
+
+
+    </table>
+}
+else
+{
+    <div>هیچ اجرا نمره داده نشده ایی توسط شما وجود ندارد.</div>
+}

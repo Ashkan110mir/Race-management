@@ -6,6 +6,6 @@ namespace Race_management.Data.PlayerShowData
     {
         public List<Show> GetShowbyUserId(string userId);
 
-
+        public List<Show> GetAllShow();
     }
 }

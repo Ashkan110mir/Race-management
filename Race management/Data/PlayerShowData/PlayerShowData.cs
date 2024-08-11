@@ -1,4 +1,5 @@
-﻿using Race_management.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Race_management.Models;
 
 namespace Race_management.Data.PlayerShowData
 {
@@ -10,7 +11,11 @@ namespace Race_management.Data.PlayerShowData
             _db = db;
         }
 
-
+        public List<Show> GetAllShow()
+        {
+            return _db.Shows.Include(e=>e.ShowToCoach).Include(e=>e.ShowPlayer).ToList();
+            
+        }
 
         public List<Show> GetShowbyUserId(string userId)
         {
